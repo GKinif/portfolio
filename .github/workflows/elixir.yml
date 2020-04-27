@@ -75,6 +75,9 @@ jobs:
 
     - name: Run migration and start Server
       uses: appleboy/ssh-action@master
+      env:
+        SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+        DATABASE_URL: ecto://${{ secrets.DATABASE_USER }}:${{ secrets.DATABASE_PASSWORD }}@localhost/portfolio
       with:
         host: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
