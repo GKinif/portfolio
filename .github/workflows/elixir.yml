@@ -69,6 +69,6 @@ jobs:
         HOST: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         KEY: ${{ secrets.SSH_KEY }}
-        with:
-          source: "./_build/prod/rel/portfolio"
-          target: "/home/guillaume/app"
+      with:
+        source: "./_build/prod/rel/portfolio"
+        target: "/home/guillaume/app"
