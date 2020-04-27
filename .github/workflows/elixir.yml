@@ -46,8 +46,29 @@ jobs:
         elixir-version: 1.9.4
         otp-version: 22.2
 
-    - name: Install Dependencies
+    - name: Install Phoenix Dependencies
       run: mix deps.get
 
     - name: Run Tests
       run: mix test
+
+    - name: Install Node Dependencies
+      run: npm install --prefix ./assets
+
+    - name: Compile assets
+      run: |
+        npm run deploy --prefix ./assets
+        mix phx.digest
+
+    - name: Build release
+      run: MIX_ENV=prod mix release
+
+    - name: Copy files via scp
+      uses: appleboy/scp-action@master
+      env:
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        KEY: ${{ secrets.SSH_KEY }}
+        with:
+          source: "./_build/prod/rel/portfolio"
+          target: "/home/guillaume/app"
