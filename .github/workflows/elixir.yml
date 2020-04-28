@@ -63,6 +63,14 @@ jobs:
     - name: Build release
       run: MIX_ENV=prod mix release
 
+    - name: Stop Phoenix server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          KEY: ${{ secrets.SSH_KEY }}
+          script: /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio stop
+
     - name: Copy files via scp
       uses: appleboy/scp-action@master
       env:
@@ -73,7 +81,7 @@ jobs:
         source: "./_build/prod/rel/portfolio"
         target: "/home/guillaume/app"
 
-    - name: Run migration and start Server
+    - name: Run migration and start Phoenix server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -82,6 +90,5 @@ jobs:
         script: |
           export SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
           export DATABASE_URL=ecto://${{ secrets.DATABASE_USER }}:${{ secrets.DATABASE_PASSWORD }}@localhost/portfolio
-          /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio stop
           /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio eval "Portfolio.Release.migrate"
           /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio daemon

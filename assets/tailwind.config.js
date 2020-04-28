@@ -2,7 +2,7 @@ module.exports = {
   theme: {
     // https://javisperez.github.io/tailwindcolorshades/#/
     extend: {
-      'gull-gray': {
+      'gullgray': {
         100: '#F5F8F9',
         200: '#E5EDF0',
         300: '#D5E2E7',
