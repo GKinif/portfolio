@@ -13,7 +13,7 @@
         <h1 class="text-6xl text-gray-700">Oops</h1>
         <h2 class="text-2xl text-gray-700">The content you are looking for does not exist</h2>
         <p>
-            <a href="<%= Routes.page_path(@conn, :index) %>">Go back to home page</a>
+            <a href="<%= Routes.page_path(@conn, :index) %>" class="hover:underline">Go back to home page</a>
         </p>
     </main>
 

@@ -4,7 +4,7 @@
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <%= link "Portfolio", to: Routes.page_path(@conn, :index), class: "text-xl text-white" %>
+                        <%= link "Portfolio", to: Routes.page_path(@conn, :index), class: "text-xl text-white hover:underline" %>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
