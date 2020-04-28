@@ -64,12 +64,12 @@ jobs:
       run: MIX_ENV=prod mix release
 
     - name: Stop Phoenix server
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          USERNAME: ${{ secrets.USERNAME }}
-          KEY: ${{ secrets.SSH_KEY }}
-          script: /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio stop
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+        KEY: ${{ secrets.SSH_KEY }}
+        script: /home/guillaume/app/_build/prod/rel/portfolio/bin/portfolio stop
 
     - name: Copy files via scp
       uses: appleboy/scp-action@master
