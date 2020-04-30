@@ -39,7 +39,10 @@ defmodule PortfolioWeb.Telemetry do
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
       summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
+      summary("vm.total_run_queue_lengths.io"),
+
+      # Pow User Metrics
+      summary("portfolio.session_count.count"),
     ]
   end
 
@@ -47,7 +50,7 @@ defmodule PortfolioWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {PortfolioWeb, :count_users, []}
+      {Portfolio.Measurements, :dispatch_session_count, []}
     ]
   end
 end
