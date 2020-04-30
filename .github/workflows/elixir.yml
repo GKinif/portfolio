@@ -53,7 +53,7 @@ jobs:
       run: mix test
 
     - name: Install Node Dependencies
-      run: npm install --prefix ./assets
+      run: npm install --prefix ./assets --only=production
 
     - name: Compile assets
       run: |
