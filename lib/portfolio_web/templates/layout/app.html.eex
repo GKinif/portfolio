@@ -9,24 +9,15 @@
   </head>
 
   <body>
-    <%= render "_nav.html", %{conn: @conn} %>
+    <%= render "_nav.html", %{conn: @conn, current_user: @current_user} %>
 
-    <header class="bg-white shadow">
-      <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold leading-tight text-gray-900">
-          <a href="#" class="px-4 py-2 rounded font-semibold bg-gray-400 text-black;">Button</a>
-        </h1>
-      </div>
-    </header>
     <main>
       <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <!-- Replace with your content -->
         <div class="px-4 py-6 sm:px-0">
           <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
           <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
           <%= @inner_content %>
         </div>
-        <!-- /End replace -->
       </div>
     </main>
 
