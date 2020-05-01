@@ -28,6 +28,12 @@ defmodule PortfolioWeb.Telemetry do
         unit: {:native, :millisecond}
       ),
 
+      # App Metrics
+      counter("portfolio.render.controller",  tags: [:controller, :action]),
+
+      # Pow User Metrics
+      summary("portfolio.session_count.count"),
+
       # Database Metrics
       summary("portfolio.repo.query.total_time", unit: {:native, :millisecond}),
       summary("portfolio.repo.query.decode_time", unit: {:native, :millisecond}),
@@ -36,13 +42,10 @@ defmodule PortfolioWeb.Telemetry do
       summary("portfolio.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
-      summary("vm.memory.total", unit: {:byte, :kilobyte}),
+      summary("vm.memory.total", unit: {:byte, :megabyte}),
       summary("vm.total_run_queue_lengths.total"),
       summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io"),
-
-      # Pow User Metrics
-      summary("portfolio.session_count.count"),
+      summary("vm.total_run_queue_lengths.io")
     ]
   end
 
