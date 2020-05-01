@@ -36,7 +36,7 @@
                                     From: "transform opacity-100 scale-100"
                                     To: "transform opacity-0 scale-95"
                                 -->
-                                <div x-show="isOpen" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
+                                <div x-show="isOpen" @click.away="isOpen = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
                                     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                                         <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                                     </div>
