@@ -1,14 +1,14 @@
 <header>
-    <nav class="bg-gray-800" x-data="{ isOpen: false }">
+    <nav class="bg-blackcurrant-600" x-data="{ isOpen: false }">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <%= link "Portfolio", to: Routes.page_path(@conn, :index), class: "text-xl text-white hover:underline" %>
+                        <%= link "Portfolio", to: Routes.page_path(@conn, :index), class: "text-3xl text-blackcurrant-100 hover:underline" %>
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
-                            <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Albums</a>
+                            <a href="#" class="ml-4 px-3 py-2 rounded-md text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Albums</a>
                         </div>
                     </div>
                 </div>
@@ -35,10 +35,10 @@
                                 -->
                                 <div x-show="isOpen" @click.away="isOpen = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
                                     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical">
-                                        <span class="block px-4 py-2 text-sm text-gray-700 border-b border-gray-600"><%= @current_user.username %></span>
-                                        <%= link "Users", to: Routes.user_path(@conn, :index), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                                        <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
-                                        <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                                        <span class="block px-4 py-2 text-sm text-gray-700 border-b border-blackcurrant-600"><%= @current_user.username %></span>
+                                        <%= link "Users", to: Routes.user_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
+                                        <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
+                                        <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                     </div>
                                 </div>
                             </div>
