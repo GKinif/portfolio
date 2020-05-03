@@ -82,4 +82,4 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 config :portfolio,
   accepted_user_email: "accepted_user_email"
 
-import_config "dev.secret.exs"
+# import_config "dev.secret.exs"
