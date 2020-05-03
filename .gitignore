@@ -35,4 +35,4 @@ npm-debug.log
 
 .idea
 
-config/*.secret.exs
+config/dev.secret.exs
