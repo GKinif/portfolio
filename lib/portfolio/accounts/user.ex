@@ -2,7 +2,7 @@ defmodule Portfolio.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @accepted_user_email ~w(#{Application.fetch_env!(:portfolio, :accepted_user_email)})
+  @accepted_user_email ~w(#{Application.get_env(:portfolio, :accepted_user_email)})
 
   schema "users" do
 
