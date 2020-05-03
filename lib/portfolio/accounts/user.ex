@@ -17,8 +17,6 @@ defmodule Portfolio.Accounts.User do
 
   @doc false
   def changeset(user, attrs) do
-    IO.puts("ACCEPTED EMAIL")
-    IO.inspect(@accepted_user_email)
     user
     |> cast(attrs, [:username, :email, :picture])
     |> validate_required([:email, :username])

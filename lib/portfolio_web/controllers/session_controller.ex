@@ -42,8 +42,6 @@ defmodule PortfolioWeb.SessionController do
 
   defp find_or_create_user(auth) do
     auth_data = extract_data_from_auth(auth)
-    IO.puts("AUTH DATA")
-    IO.inspect(auth_data)
 
     case Accounts.get_user_provider_by_oauth(auth_data.provider, auth_data.uid) do
       nil ->
