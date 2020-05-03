@@ -1,12 +1,12 @@
 defmodule Portfolio.Measurements do
 
-  def dispatch_session_count() do
+  def dispatch_user_count() do
     # emit a telemetry event when called
-    num_sessions = length(Pow.Store.CredentialsCache.users([otp_app: :my_app], Portfolio.Accounts.User))
+    user_count = Portfolio.Accounts.count_user()
 
     :telemetry.execute(
-      [:portfolio, :session_count],
-      %{count: num_sessions},
+      [:portfolio, :user_count],
+      %{count: user_count},
       %{}
     )
   end

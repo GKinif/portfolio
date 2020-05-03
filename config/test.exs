@@ -20,3 +20,6 @@ config :portfolio, PortfolioWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :portfolio,
+       accepted_user_email: "valid@email.com"

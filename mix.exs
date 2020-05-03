@@ -20,7 +20,7 @@ defmodule Portfolio.MixProject do
   def application do
     [
       mod: {Portfolio.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon, :ueberauth, :ueberauth_github]
     ]
   end
 
@@ -45,10 +45,8 @@ defmodule Portfolio.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:pow, "~> 1.0.20"},
-      {:pow_assent, "~> 0.4.7"},
-      {:certifi, "~> 2.4"},
-      {:ssl_verify_fun, "~> 1.1"}
+      {:ueberauth, "~> 0.6"},
+      {:ueberauth_github, "~> 0.7"}
     ]
   end
 

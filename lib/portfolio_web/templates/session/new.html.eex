@@ -1,0 +1,5 @@
+<div>
+    <h1>Login</h1>
+
+    <%= link "Login with Github", to: "/auth/github" %>
+</div>

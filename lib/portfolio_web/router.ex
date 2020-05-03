@@ -1,7 +1,5 @@
 defmodule PortfolioWeb.Router do
   use PortfolioWeb, :router
-  use Pow.Phoenix.Router
-  use PowAssent.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -9,13 +7,7 @@ defmodule PortfolioWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-  end
-
-  pipeline :skip_csrf_protection do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :put_secure_browser_headers
+    plug PortfolioWeb.Plugs.AssignAuthenticatedUser
   end
 
   pipeline :api do
@@ -23,27 +15,25 @@ defmodule PortfolioWeb.Router do
   end
 
   pipeline :protected do
-    plug Pow.Plug.RequireAuthenticated,
-         error_handler: Pow.Phoenix.PlugErrorHandler
-  end
-
-  scope "/" do
-    pipe_through :skip_csrf_protection
-
-    pow_assent_authorization_post_callback_routes()
-  end
-
-  scope "/" do
-    pipe_through :browser
-
-    pow_session_routes()
-    pow_assent_routes()
+    plug PortfolioWeb.Plugs.RequestAuthenticated
   end
 
   scope "/", PortfolioWeb do
     pipe_through :browser
 
+    get("/session/new", SessionController, :new)
+    delete("/session", SessionController, :delete)
+
     get "/", PageController, :index
+
+    resources "/users", UserController
+  end
+
+  scope "/auth", PortfolioWeb do
+    pipe_through(:browser)
+
+    get("/:provider", SessionController, :request)
+    get("/:provider/callback", SessionController, :callback)
   end
 
   # Other scopes may use custom stacks.

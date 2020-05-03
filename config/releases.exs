@@ -30,9 +30,33 @@ config :portfolio, PortfolioWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+github_client_id =
+  System.get_env("GITHUB_CLIENT_ID") ||
+    raise """
+    environment variable SECRET_KEY_BASE is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
+github_client_secret =
+  System.get_env("GITHUB_CLIENT_SECRET") ||
+    raise """
+    environment variable SECRET_KEY_BASE is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
+
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
-  client_id: System.get_env("GITHUB_CLIENT_ID"),
-  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+  client_id: github_client_id,
+  client_secret: github_client_secret
+
+accepted_user_email =
+  System.get_env("ACCEPTED_USER_EMAIL") ||
+    raise """
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
+    """
+
+config :portfolio,
+  accepted_user_email: accepted_user_email
 
 # ## Using releases (Elixir v1.9+)
 #

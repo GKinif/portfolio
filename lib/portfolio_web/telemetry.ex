@@ -31,8 +31,8 @@ defmodule PortfolioWeb.Telemetry do
       # App Metrics
       counter("portfolio.render.controller",  tags: [:controller, :action]),
 
-      # Pow User Metrics
-      summary("portfolio.session_count.count"),
+      # User metrics
+      # summary("portfolio.user_count.count"),
 
       # Database Metrics
       summary("portfolio.repo.query.total_time", unit: {:native, :millisecond}),
@@ -45,7 +45,7 @@ defmodule PortfolioWeb.Telemetry do
       summary("vm.memory.total", unit: {:byte, :megabyte}),
       summary("vm.total_run_queue_lengths.total"),
       summary("vm.total_run_queue_lengths.cpu"),
-      summary("vm.total_run_queue_lengths.io")
+      summary("vm.total_run_queue_lengths.io"),
     ]
   end
 
@@ -53,7 +53,7 @@ defmodule PortfolioWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      {Portfolio.Measurements, :dispatch_session_count, []}
+      # {Portfolio.Measurements, :dispatch_user_count, []}
     ]
   end
 end

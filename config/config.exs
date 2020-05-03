@@ -26,11 +26,10 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-# POW
-config :portfolio, :pow,
-  user: Portfolio.Accounts.User,
-  repo: Portfolio.Repo,
-  web_module: PortfolioWeb
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, [default_scope: "user:email"]}
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

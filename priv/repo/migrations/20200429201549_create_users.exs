@@ -4,7 +4,8 @@ defmodule Portfolio.Repo.Migrations.CreateUsers do
   def change do
     create table(:users) do
       add :email, :string, null: false
-      add :password_hash, :string
+      add :username, :string, null: false
+      add :picture, :string
 
       timestamps()
     end
