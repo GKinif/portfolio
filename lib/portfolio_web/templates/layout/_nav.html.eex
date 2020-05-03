@@ -8,9 +8,6 @@
                     </div>
                     <div class="hidden md:block">
                         <div class="ml-10 flex items-baseline">
-                            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-                                <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "px-3 py-2 rounded-md text-sm font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700" %>
-                            <% end %>
                             <a href="#" class="ml-4 px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700">Albums</a>
                         </div>
                     </div>
@@ -39,6 +36,8 @@
                                 <div x-show="isOpen" @click.away="isOpen = false" class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg">
                                     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical">
                                         <span class="block px-4 py-2 text-sm text-gray-700 border-b border-gray-600"><%= @current_user.username %></span>
+                                        <%= link "Users", to: Routes.user_path(@conn, :index), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
+                                        <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                                         <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" %>
                                     </div>
                                 </div>

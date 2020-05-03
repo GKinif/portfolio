@@ -5,7 +5,7 @@ defmodule PortfolioWeb.Plugs.RequestAuthenticated do
   def init(opts), do: opts
 
   def call(conn, _opts) do
-    case get_session(conn, :current_user) do
+    case get_session(conn, :user_id) do
       nil ->
         conn
         |> put_flash(:error, "You must be logged in to execute this action!")
