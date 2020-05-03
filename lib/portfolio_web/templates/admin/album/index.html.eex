@@ -1,0 +1,38 @@
+<h1>Listing Albums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short description</th>
+      <th>Long description</th>
+      <th>Visible</th>
+      <th>Password</th>
+      <th>Order</th>
+      <th>Featured</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for album <- @albums do %>
+    <tr>
+      <td><%= album.name %></td>
+      <td><%= album.short_description %></td>
+      <td><%= album.long_description %></td>
+      <td><%= album.visible %></td>
+      <td><%= album.password %></td>
+      <td><%= album.order %></td>
+      <td><%= album.featured %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.admin_album_path(@conn, :show, album) %></span>
+        <span><%= link "Edit", to: Routes.admin_album_path(@conn, :edit, album) %></span>
+        <span><%= link "Delete", to: Routes.admin_album_path(@conn, :delete, album), method: :delete, data: [confirm: "Are you sure?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Album", to: Routes.admin_album_path(@conn, :new) %></span>

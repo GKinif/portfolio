@@ -1,0 +1,43 @@
+<h1>Show Album</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @album.name %>
+  </li>
+
+  <li>
+    <strong>Short description:</strong>
+    <%= @album.short_description %>
+  </li>
+
+  <li>
+    <strong>Long description:</strong>
+    <%= @album.long_description %>
+  </li>
+
+  <li>
+    <strong>Visible:</strong>
+    <%= @album.visible %>
+  </li>
+
+  <li>
+    <strong>Password:</strong>
+    <%= @album.password %>
+  </li>
+
+  <li>
+    <strong>Order:</strong>
+    <%= @album.order %>
+  </li>
+
+  <li>
+    <strong>Featured:</strong>
+    <%= @album.featured %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.album_path(@conn, :edit, @album) %></span>
+<span><%= link "Back", to: Routes.album_path(@conn, :index) %></span>

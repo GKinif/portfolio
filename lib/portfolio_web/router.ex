@@ -27,6 +27,9 @@ defmodule PortfolioWeb.Router do
 
     get "/", PageController, :index
     live_dashboard "/dashboard", metrics: PortfolioWeb.Telemetry
+
+    resources "/albums", AlbumController, only: [:index, :show]
+
   end
 
   scope "/auth", PortfolioWeb do
@@ -40,6 +43,7 @@ defmodule PortfolioWeb.Router do
     pipe_through [:browser, :protected]
 
     resources "/users", UserController, only: [:index, :show]
+    resources "/albums", AlbumController
   end
 
   # Other scopes may use custom stacks.
