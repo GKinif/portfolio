@@ -46,7 +46,9 @@ defmodule Portfolio.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:ueberauth, "~> 0.6"},
-      {:ueberauth_github, "~> 0.7"}
+      {:ueberauth_github, "~> 0.7"},
+      {:waffle, "~> 1.0.1"},
+      {:waffle_ecto, "~> 0.0.8"}
     ]
   end
 

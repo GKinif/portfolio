@@ -50,9 +50,27 @@ defmodule Portfolio.Galleries do
 
   """
   def create_album(attrs \\ %{}) do
-    %Album{}
-    |> Album.changeset(attrs)
-    |> Repo.insert()
+    IO.puts("create_album")
+    IO.inspect(attrs)
+    attrs_without_cover = Map.delete(attrs, "cover")
+
+    IO.puts("without cover")
+    IO.inspect(attrs_without_cover)
+
+    with {:ok, album} <- %Album{}
+    |> Album.changeset(attrs_without_cover)
+    |> Repo.insert() do
+      IO.puts("Before update")
+      IO.inspect(album)
+      IO.inspect(attrs)
+      if Map.has_key?(attrs, "cover") do
+        IO.puts("Will update cover")
+        attrs_cover = Map.take(attrs, ["cover"])
+        update_album(album, attrs_cover)
+      else
+        {:ok, album}
+      end
+    end
   end
 
   @doc """
@@ -86,7 +104,11 @@ defmodule Portfolio.Galleries do
 
   """
   def delete_album(%Album{} = album) do
-    Repo.delete(album)
+    with {:ok, _} <- delete_album_directory(album) do
+      Repo.delete(album)
+    else
+      error -> error
+    end
   end
 
   @doc """
@@ -101,4 +123,6 @@ defmodule Portfolio.Galleries do
   def change_album(%Album{} = album, attrs \\ %{}) do
     Album.changeset(album, attrs)
   end
+
+  defp delete_album_directory(%Album{} = album), do: File.rm_rf("uploads/albums/#{album.id}")
 end

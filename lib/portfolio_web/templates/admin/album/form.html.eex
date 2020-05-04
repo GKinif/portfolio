@@ -1,37 +1,57 @@
-<%= form_for @changeset, @action, fn f -> %>
+<%= form_for @changeset, @action, [multipart: true], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
     </div>
   <% end %>
 
-  <%= label f, :name %>
-  <%= text_input f, :name %>
-  <%= error_tag f, :name %>
+  <div class="mb-6">
+    <%= label f, :name, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= text_input f, :name, class: "shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :name, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :short_description %>
-  <%= text_input f, :short_description %>
-  <%= error_tag f, :short_description %>
+  <div class="mb-6">
+    <%= label f, :cover, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= file_input f, :cover, class: "shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :cover, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :long_description %>
-  <%= textarea f, :long_description %>
-  <%= error_tag f, :long_description %>
+  <div class="mb-6">
+    <%= label f, :short_description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= text_input f, :short_description, class: "shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :short_description, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :visible %>
-  <%= checkbox f, :visible %>
-  <%= error_tag f, :visible %>
+  <div class="mb-6">
+    <%= label f, :long_description, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= textarea f, :long_description, class: "shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :long_description, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :password %>
-  <%= text_input f, :password %>
-  <%= error_tag f, :password %>
+  <div class="mb-6">
+    <%= label f, :visible, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= checkbox f, :visible %>
+    <%= error_tag f, :visible, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :order %>
-  <%= number_input f, :order %>
-  <%= error_tag f, :order %>
+  <div class="mb-6">
+    <%= label f, :featured, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= checkbox f, :featured %>
+    <%= error_tag f, :featured, class: "text-red-500 text-xs italic" %>
+  </div>
 
-  <%= label f, :featured %>
-  <%= checkbox f, :featured %>
-  <%= error_tag f, :featured %>
+  <div class="mb-6">
+    <%= label f, :order, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= number_input f, :order, class: "shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :order, class: "text-red-500 text-xs italic" %>
+  </div>
+
+  <div class="mb-6">
+    <%= label f, :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= text_input f, :password, class: "shadow appearance-none border border-gray-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= error_tag f, :password, class: "text-red-500 text-xs italic" %>
+  </div>
 
   <div>
     <%= submit "Save" %>

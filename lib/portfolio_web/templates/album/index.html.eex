@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th></th>
       <th>Name</th>
       <th>Short description</th>
       <th>Long description</th>
@@ -17,6 +18,7 @@
   <tbody>
 <%= for album <- @albums do %>
     <tr>
+      <td><img src="<%= album.cover %>" class="h-8 w-8 rounded-full" /></td>
       <td><%= album.name %></td>
       <td><%= album.short_description %></td>
       <td><%= album.long_description %></td>

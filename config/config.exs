@@ -31,6 +31,9 @@ config :ueberauth, Ueberauth,
     github: {Ueberauth.Strategy.Github, [default_scope: "user:email", send_redirect_uri: false]}
   ]
 
+config :waffle,
+  storage: Waffle.Storage.Local
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
