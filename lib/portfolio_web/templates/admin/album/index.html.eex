@@ -18,7 +18,7 @@
   <tbody>
 <%= for album <- @albums do %>
     <tr>
-      <td><img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>" class="h-8 w-8 rounded-full" /></td>
+      <td><img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :thumb) %>" class="h-8 w-8 rounded-full" /></td>
       <td><%= album.name %></td>
       <td><%= album.short_description %></td>
       <td><%= album.long_description %></td>

@@ -1,10 +1,8 @@
-<h1>Show Album</h1>
+<h1 class="text-6xl"><%= @album.name %></h1>
 
 <ul>
-
   <li>
-    <strong>Name:</strong>
-    <%= @album.name %>
+    <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
   </li>
 
   <li>
@@ -39,5 +37,4 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.album_path(@conn, :edit, @album) %></span>
 <span><%= link "Back", to: Routes.album_path(@conn, :index) %></span>

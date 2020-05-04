@@ -36,3 +36,5 @@ npm-debug.log
 .idea
 
 config/dev.secret.exs
+
+uploads
