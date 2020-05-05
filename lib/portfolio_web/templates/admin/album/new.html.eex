@@ -1,4 +1,4 @@
-<section>
+<section class="flex flex-col px-6">
     <h1>New Album</h1>
 
     <%= render "form.html", Map.put(assigns, :action, Routes.admin_album_path(@conn, :create)) %>

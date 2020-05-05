@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
   theme: {
     // https://javisperez.github.io/tailwindcolorshades/#/
@@ -32,13 +34,48 @@ module.exports = {
           400: '#706c76',
           500: '#3e3947',
           600: '#332d3b',
-          700: '#2E2935',
+          700: '#2e2935',
           800: '#1F1B23',
           900: '#0F0E12',
         },
-      }
+      },
     },
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities, addComponents, e, prefix, config }) {
+      addUtilities({
+        '.h-v10': {
+          height: '10vh',
+        },
+        '.h-v20': {
+          height: '20vh',
+        },
+        '.h-v30': {
+          height: '30vh',
+        },
+        '.h-v40': {
+          height: '40vh',
+        },
+        '.h-v50': {
+          height: '50vh',
+        },
+        '.h-v60': {
+          height: '60vh',
+        },
+        '.h-v70': {
+          height: '70vh',
+        },
+        '.h-v80': {
+          height: '80vh',
+        },
+        '.h-v90': {
+          height: '90vh',
+        },
+        '.h-v100': {
+          height: '100vh',
+        },
+      });
+    }),
+  ],
 }

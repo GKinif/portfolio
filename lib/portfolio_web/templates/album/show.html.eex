@@ -1,40 +1,12 @@
-<h1 class="text-6xl"><%= @album.name %></h1>
+<img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
+<section class="flex flex-col px-6">
+  <h1 class="flex justify-center text-6xl"><%= @album.name %></h1>
 
-<ul>
-  <li>
-    <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
-  </li>
+  <%= if @album.short_description && !@album.long_description do %>
+    <p><%= @album.short_description %></p>
+  <% end %>
 
-  <li>
-    <strong>Short description:</strong>
-    <%= @album.short_description %>
-  </li>
-
-  <li>
-    <strong>Long description:</strong>
-    <%= @album.long_description %>
-  </li>
-
-  <li>
-    <strong>Visible:</strong>
-    <%= @album.visible %>
-  </li>
-
-  <li>
-    <strong>Password:</strong>
-    <%= @album.password %>
-  </li>
-
-  <li>
-    <strong>Order:</strong>
-    <%= @album.order %>
-  </li>
-
-  <li>
-    <strong>Featured:</strong>
-    <%= @album.featured %>
-  </li>
-
-</ul>
-
-<span><%= link "Back", to: Routes.album_path(@conn, :index) %></span>
+  <%= if @album.long_description do %>
+  <p><%= @album.long_description %></p>
+  <% end %>
+</section>
