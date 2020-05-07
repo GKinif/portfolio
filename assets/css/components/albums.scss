@@ -6,11 +6,15 @@
 }
 
 .album-background-text {
-  @apply text-blackcurrant-700;
+  @apply text-blackcurrant-100;
   position: absolute;
   left: 0rem;
-  top: -5rem;
+  top: -7rem;
   z-index: -10;
   font-size: 20rem;
-  opacity: 0.6;
+  opacity: 0.4;
+}
+
+.album-card-text {
+  height: 200px;
 }

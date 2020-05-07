@@ -1,24 +1,23 @@
-<section class="flex flex-col">
+<section class="container mx-auto flex flex-wrap mt-8 justify-between">
   <%= for {album, index} <- Enum.with_index(@albums) do %>
-  <div class="w-full flex flex-wrap overflow-hidden">
-    <div class="w-full md:w-1/2 <%= if rem(index, 2) != 0, do: 'md:order-last' %>">
-      <img class="w-full h-v40 object-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :thumb) %>">
-    </div>
+    <div class="w-full md:w-1/2 p-2">
+      <div class="flex flex-col h-full overflow-hidden rounded-md relative">
+        <div class="w-full">
+          <a href="<%= Routes.album_path(@conn, :show, album) %>" aria-describedby="<%= 'album-#{album.id}' %>">
+            <img class="w-full h-v40 object-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>">
+          </a>
+        </div>
 
-    <div class="w-full md:w-1/2 p-8 flex flex-col justify-between">
-      <div class="mb-8 relative">
-        <span class="album-background-text"><%= album.name %></span>
-        <%= link album.name, to: Routes.album_path(@conn, :show, album), class: "mb-2 text-4xl text-blackcurrant-100 hover:underline" %>
-        <p class="text-blackcurrant-200">
-          <%= album.short_description %>
-        </p>
-      </div>
-      <div class="flex flex-wrap items-center">
-        <%= for tag <- ["food", "stuff", "other tag", "test", "temporary"] do %>
-        <span class="border border-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-blackcurrant-200 m-1 hover:border-galliano-500 hover:text-galliano-500 focus:outline-none focus:text-galliano-500"><%= tag %></span>
-        <% end %>
+        <div class="album-card-text w-full px-8 py-2 flex flex-col bg-blackcurrant-700 text-blackcurrant-200 overflow-hidden">
+          <div class="w-full flex items-center justify-center">
+            <%= link album.name, to: Routes.album_path(@conn, :show, album), class: "mb-2 text-4xl text-blackcurrant-200 hover:underline", id: "album-#{album.id}" %>
+          </div>
+
+          <p>
+            <%= album.short_description %>
+          </p>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 </section>

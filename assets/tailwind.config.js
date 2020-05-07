@@ -45,6 +45,7 @@ module.exports = {
   plugins: [
     plugin(function({ addUtilities, addComponents, e, prefix, config }) {
       addUtilities({
+        // VIEW HEIGHT
         '.h-v10': {
           height: '10vh',
         },
@@ -75,6 +76,8 @@ module.exports = {
         '.h-v100': {
           height: '100vh',
         },
+      }, {
+        variants: ['responsive', 'hover', 'focus']
       });
     }),
   ],
