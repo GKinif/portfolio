@@ -1,23 +1,19 @@
-<section class="container mx-auto flex flex-wrap mt-8 justify-between">
-  <%= for {album, index} <- Enum.with_index(@albums) do %>
-    <div class="w-full md:w-1/2 p-2">
-      <div class="flex flex-col h-full overflow-hidden rounded-md relative">
-        <div class="w-full">
-          <a href="<%= Routes.album_path(@conn, :show, album) %>" aria-describedby="<%= 'album-#{album.id}' %>">
-            <img class="w-full h-v40 object-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>">
-          </a>
-        </div>
-
-        <div class="album-card-text w-full px-8 py-2 flex flex-col bg-blackcurrant-700 text-blackcurrant-200 overflow-hidden">
-          <div class="w-full flex items-center justify-center">
-            <%= link album.name, to: Routes.album_path(@conn, :show, album), class: "mb-2 text-4xl text-blackcurrant-200 hover:underline", id: "album-#{album.id}" %>
+<section class="container mx-auto">
+  <ul class="flex flex-wrap mt-8 justify-between">
+    <%= for {album, index} <- Enum.with_index(@albums) do %>
+      <li class="md:w-1/2 p-2">
+        <div class="album-card rounded-lg bg-blackcurrant-500">
+          <div class="img">
+            <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>", class="rounded-t-md">
           </div>
-
-          <p>
-            <%= album.short_description %>
-          </p>
+          <div class="text">
+            <h2>
+              <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
+            </h2>
+            <p><%= album.short_description %></p>
+          </div>
         </div>
-      </div>
-    </div>
-  <% end %>
+      </li>
+    <% end %>
+  </ul>
 </section>
