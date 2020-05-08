@@ -22,6 +22,41 @@ defmodule Portfolio.Galleries do
   end
 
   @doc """
+  Returns the list of albums where visible == true.
+
+  ## Examples
+
+      iex> list_albums()
+      [%Album{}, ...]
+
+  """
+  def list_visible_albums do
+    query =
+      from a in Album,
+         where: a.visible == true,
+         order_by: [desc: :updated_at, asc: :name],
+         select: a
+    Repo.all(query)
+  end
+
+  @doc """
+  Returns the list of albums where visible == true and featured == true.
+
+  ## Examples
+
+      iex> list_albums()
+      [%Album{}, ...]
+
+  """
+  def list_featured_albums do
+    query =
+      from a in Album,
+         where: a.visible == true and a.featured == true,
+         select: a
+    Repo.all(query)
+  end
+
+  @doc """
   Gets a single album.
 
   Raises `Ecto.NoResultsError` if the Album does not exist.
@@ -50,21 +85,12 @@ defmodule Portfolio.Galleries do
 
   """
   def create_album(attrs \\ %{}) do
-    IO.puts("create_album")
-    IO.inspect(attrs)
     attrs_without_cover = Map.delete(attrs, "cover")
-
-    IO.puts("without cover")
-    IO.inspect(attrs_without_cover)
 
     with {:ok, album} <- %Album{}
     |> Album.changeset(attrs_without_cover)
     |> Repo.insert() do
-      IO.puts("Before update")
-      IO.inspect(album)
-      IO.inspect(attrs)
       if Map.has_key?(attrs, "cover") do
-        IO.puts("Will update cover")
         attrs_cover = Map.take(attrs, ["cover"])
         update_album(album, attrs_cover)
       else

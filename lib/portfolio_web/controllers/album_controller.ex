@@ -5,7 +5,7 @@ defmodule PortfolioWeb.AlbumController do
   alias Portfolio.Galleries.Album
 
   def index(conn, _params) do
-    albums = Galleries.list_albums()
+    albums = Galleries.list_visible_albums()
     render(conn, "index.html", albums: albums)
   end
 
