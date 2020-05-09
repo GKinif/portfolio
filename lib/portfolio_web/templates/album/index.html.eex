@@ -1,6 +1,6 @@
 <section class="container mx-auto">
   <ul class="album-cards">
-    <%= for {album, index} <- Enum.with_index(@albums) do %>
+    <%= for album <- Enum.with_index(@albums) do %>
       <li class="md:w-1/2 p-2">
         <div class="album-card rounded-lg bg-blackcurrant-500">
           <div class="img">

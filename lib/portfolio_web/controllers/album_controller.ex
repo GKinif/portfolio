@@ -2,7 +2,6 @@ defmodule PortfolioWeb.AlbumController do
   use PortfolioWeb, :controller
 
   alias Portfolio.Galleries
-  alias Portfolio.Galleries.Album
 
   def index(conn, _params) do
     albums = Galleries.list_visible_albums()

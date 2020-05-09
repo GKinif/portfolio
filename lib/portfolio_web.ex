@@ -68,6 +68,9 @@ defmodule PortfolioWeb do
       import PortfolioWeb.ErrorHelpers
       import PortfolioWeb.Gettext
       alias PortfolioWeb.Router.Helpers, as: Routes
+
+      # Custom helpers
+      import PortfolioWeb.IconHelpers
     end
   end
 
