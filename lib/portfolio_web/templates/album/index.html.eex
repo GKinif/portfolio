@@ -1,19 +1,19 @@
 <section class="container mx-auto">
   <ul class="album-cards">
-    <%= for album <- Enum.with_index(@albums) do %>
-      <li class="md:w-1/2 p-2">
-        <div class="album-card rounded-lg bg-blackcurrant-500">
-          <div class="img">
-            <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>", class="rounded-t-md">
-          </div>
-          <div class="text">
-            <h2>
-              <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
-            </h2>
-            <p><%= album.short_description %></p>
-          </div>
+    <%= for album <- @albums do %>
+    <li class="md:w-1/2 p-2">
+      <div class="album-card rounded-lg bg-blackcurrant-500">
+        <div class="img">
+          <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>", class="rounded-t-md">
         </div>
-      </li>
+        <div class="text">
+          <h2>
+            <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
+          </h2>
+          <p><%= album.name %></p>
+        </div>
+      </div>
+    </li>
     <% end %>
   </ul>
 </section>
