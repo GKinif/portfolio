@@ -1,43 +1,45 @@
-<h1>Show Album</h1>
+<section class="container mx-auto">
+  <h1>Show Album</h1>
 
-<ul>
+  <ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @album.name %>
-  </li>
+    <li>
+      <strong>Name:</strong>
+      <%= @album.name %>
+    </li>
 
-  <li>
-    <strong>Short description:</strong>
-    <%= @album.short_description %>
-  </li>
+    <li>
+      <strong>Short description:</strong>
+      <%= @album.short_description %>
+    </li>
 
-  <li>
-    <strong>Long description:</strong>
-    <%= @album.long_description %>
-  </li>
+    <li>
+      <strong>Long description:</strong>
+      <%= @album.long_description %>
+    </li>
 
-  <li>
-    <strong>Visible:</strong>
-    <%= @album.visible %>
-  </li>
+    <li>
+      <strong>Visible:</strong>
+      <%= @album.visible %>
+    </li>
 
-  <li>
-    <strong>Password:</strong>
-    <%= @album.password %>
-  </li>
+    <li>
+      <strong>Password:</strong>
+      <%= @album.password %>
+    </li>
 
-  <li>
-    <strong>Order:</strong>
-    <%= @album.order %>
-  </li>
+    <li>
+      <strong>Order:</strong>
+      <%= @album.order %>
+    </li>
 
-  <li>
-    <strong>Featured:</strong>
-    <%= @album.featured %>
-  </li>
+    <li>
+      <strong>Featured:</strong>
+      <%= @album.featured %>
+    </li>
 
-</ul>
+  </ul>
 
-<span><%= link "Edit", to: Routes.admin_album_path(@conn, :edit, @album) %></span>
-<span><%= link "Back", to: Routes.admin_album_path(@conn, :index) %></span>
+  <span><%= link "Edit", to: Routes.admin_album_path(@conn, :edit, @album) %></span>
+  <span><%= link "Back", to: Routes.admin_album_path(@conn, :index) %></span>
+</section>

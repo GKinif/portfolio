@@ -1,4 +1,4 @@
-<section class="flex flex-col px-6 pt-6">
+<section class="container mx-auto">
     <h1 class="flex justify-center">Edit <%= @album.name %></h1>
 
     <%= render "form.html", Map.put(assigns, :action, Routes.admin_album_path(@conn, :update, @album)) %>

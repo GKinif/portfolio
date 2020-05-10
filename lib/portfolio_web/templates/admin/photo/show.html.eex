@@ -1,4 +1,4 @@
-<section class="flex flex-col px-6">
+<section class="container mx-auto">
   <h1>Show Photo</h1>
 
   <ul>

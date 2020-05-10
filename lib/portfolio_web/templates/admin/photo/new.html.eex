@@ -1,4 +1,4 @@
-<section class="flex flex-col px-6">
+<section class="container mx-auto">
     <h1>New Photo</h1>
 
     <%= render "form.html", Map.merge(assigns, %{action: Routes.admin_photo_path(@conn, :create), albums: @albums}) %>
