@@ -10,7 +10,7 @@ defmodule PortfolioWeb.Admin.AlbumController do
   end
 
   def new(conn, _params) do
-    changeset = Galleries.change_album(%Album{visible: true})
+    changeset = Galleries.change_album(%Album{visible: true, order: 9999})
     render(conn, "new.html", changeset: changeset)
   end
 

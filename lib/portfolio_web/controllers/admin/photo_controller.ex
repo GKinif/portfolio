@@ -10,7 +10,7 @@ defmodule PortfolioWeb.Admin.PhotoController do
   end
 
   def new(conn, _params) do
-    changeset = Galleries.change_photo(%Photo{})
+    changeset = Galleries.change_photo(%Photo{order: 9999})
     albums = Galleries.list_albums()
     render(conn, "new.html", changeset: changeset, albums: albums)
   end
