@@ -34,15 +34,13 @@ config :portfolio, PortfolioWeb.Endpoint,
 github_client_id =
   System.get_env("GITHUB_CLIENT_ID") ||
     raise """
-    environment variable SECRET_KEY_BASE is missing.
-    You can generate one by calling: mix phx.gen.secret
+    environment variable GITHUB_CLIENT_ID is missing.
     """
 
 github_client_secret =
   System.get_env("GITHUB_CLIENT_SECRET") ||
     raise """
-    environment variable SECRET_KEY_BASE is missing.
-    You can generate one by calling: mix phx.gen.secret
+    environment variable GITHUB_CLIENT_SECRET is missing.
     """
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
@@ -52,12 +50,20 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 accepted_user_email =
   System.get_env("ACCEPTED_USER_EMAIL") ||
     raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
+    environment variable ACCEPTED_USER_EMAIL is missing.
+    provide a list of accepted user email separated by a space
     """
 
 config :portfolio,
   accepted_user_email: accepted_user_email
+
+storage_dir =
+  System.get_env("STORAGE_DIR") ||
+    raise """
+    environment variable STORAGE_DIR is missing.
+    """
+config :waffle,
+       storage_dir: storage_dir
 
 # ## Using releases (Elixir v1.9+)
 #
