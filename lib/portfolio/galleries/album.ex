@@ -2,6 +2,7 @@ defmodule Portfolio.Galleries.Album do
   use Ecto.Schema
   import Ecto.Changeset
   use Waffle.Ecto.Schema
+  alias Portfolio.Galleries.Photo
 
   schema "albums" do
     field :name, :string
@@ -12,6 +13,8 @@ defmodule Portfolio.Galleries.Album do
     field :featured, :boolean, default: false
     field :order, :integer
     field :password, :string
+
+    has_many :photos, Photo
 
     timestamps()
   end

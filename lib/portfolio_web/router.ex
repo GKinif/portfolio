@@ -44,6 +44,7 @@ defmodule PortfolioWeb.Router do
 
     resources "/users", UserController, only: [:index, :show]
     resources "/albums", Admin.AlbumController, name: "admin_album"
+    resources "/photos", Admin.PhotoController, name: "admin_photo"
   end
 
   # Other scopes may use custom stacks.

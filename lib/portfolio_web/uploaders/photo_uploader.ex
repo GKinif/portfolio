@@ -1,4 +1,4 @@
-defmodule Portfolio.Uploaders.AlbumCoverUploader do
+defmodule Portfolio.Uploaders.PhotoUploader do
   use Waffle.Definition
 
   # Include ecto support (requires package waffle_ecto installed):
@@ -34,8 +34,8 @@ defmodule Portfolio.Uploaders.AlbumCoverUploader do
   end
 
   # Override the storage directory:
-   def storage_dir(_version, {file, schema}) do
-     "uploads/albums/#{schema.id}/cover"
+   def storage_dir(_version, {_file, schema}) do
+     "uploads/albums/#{schema.album_id}"
    end
 
   # Provide a default URL if there hasn't been a file uploaded
