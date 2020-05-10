@@ -2,6 +2,17 @@ const plugin = require('tailwindcss/plugin');
 
 module.exports = {
   theme: {
+    flexGrow: {
+      '0': 0,
+      default: 1,
+      '2': 2,
+      '3': 3,
+    },
+    inset: {
+      auto: 'auto',
+      '0': 0,
+      '1/2': '50%',
+    },
     // https://javisperez.github.io/tailwindcolorshades/#/
     extend: {
       colors: {
@@ -41,7 +52,9 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    flexGrow: ['responsive', 'hover', 'focus'],
+  },
   plugins: [
     plugin(function({ addUtilities, addComponents, e, prefix, config }) {
       addUtilities({
@@ -75,6 +88,40 @@ module.exports = {
         },
         '.h-v100': {
           height: '100vh',
+        },
+        // GRAYSCALE
+        '.grayscale-0': {
+          filter: 'grayscale(0%)',
+        },
+        '.grayscale-10': {
+          filter: 'grayscale(10%)',
+        },
+        '.grayscale-20': {
+          filter: 'grayscale(20%)',
+        },
+        '.grayscale-30': {
+          filter: 'grayscale(30%)',
+        },
+        '.grayscale-40': {
+          filter: 'grayscale(40%)',
+        },
+        '.grayscale-50': {
+          filter: 'grayscale(50%)',
+        },
+        '.grayscale-60': {
+          filter: 'grayscale(60%)',
+        },
+        '.grayscale-70': {
+          filter: 'grayscale(70%)',
+        },
+        '.grayscale-80': {
+          filter: 'grayscale(80%)',
+        },
+        '.grayscale-90': {
+          filter: 'grayscale(90%)',
+        },
+        '.grayscale-100': {
+          filter: 'grayscale(100%)',
         },
       }, {
         variants: ['responsive', 'hover', 'focus']

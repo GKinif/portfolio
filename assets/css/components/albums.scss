@@ -92,3 +92,76 @@
 .album-card .text > * + * {
   margin-top: 0.75rem;
 }
+
+// FEATURED ALBUMS
+.featured-albums {
+  @apply bg-blackcurrant-500;
+  height: 50vh;
+  display: flex;
+  margin-bottom: 2rem;
+  transition: 0.6s;
+
+  &:hover .featured-album img {
+    filter: grayscale(80%);
+  }
+
+  .featured-album:hover img {
+    filter: grayscale(0%);
+  }
+}
+
+.featured-album {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: 0.6s;
+
+  &:hover, &:focus-within {
+    flex: 2;
+
+    .album-footer {
+      @apply bg-blackcurrant-100 border-b-2 border-blackcurrant-500;
+    }
+
+    a {
+      @apply text-blackcurrant-500;
+    }
+  }
+
+  .album-image {
+    width: 100%;
+    height: calc(100% - 3rem);
+  }
+
+  img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 0.3s;
+  }
+
+  a {
+    z-index: 100;
+    @apply text-blackcurrant-100 text-2xl uppercase;
+  }
+
+  .album-footer {
+    @apply bg-blackcurrant-500;
+    flex: 1;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}

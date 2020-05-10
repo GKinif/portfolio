@@ -1,6 +1,5 @@
 defmodule PortfolioWeb.AlbumController do
   use PortfolioWeb, :controller
-
   alias Portfolio.Galleries
 
   def index(conn, _params) do

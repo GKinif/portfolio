@@ -1,3 +1,14 @@
-<section class="card">
-  Will come soon
+<section>
+  <div class="featured-albums">
+  <%= for album <- @albums do %>
+    <div class="featured-album">
+      <div class="album-image">
+        <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>" />
+      </div>
+      <div class="album-footer">
+        <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </section>

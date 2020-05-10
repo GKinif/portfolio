@@ -1,5 +1,6 @@
 defmodule PortfolioWeb.PageController do
   use PortfolioWeb, :controller
+  alias Portfolio.Galleries
 
   def index(conn, _params) do
     :telemetry.execute(
@@ -7,6 +8,7 @@ defmodule PortfolioWeb.PageController do
       %{controller: "PageController"},
       %{controller: "PageController", action: "index"}
     )
-    render(conn, "index.html")
+    albums = Galleries.list_featured_albums()
+    render(conn, "index.html", albums: albums)
   end
 end
