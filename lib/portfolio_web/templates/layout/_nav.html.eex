@@ -38,7 +38,7 @@
                                         <span class="block px-4 py-2 text-sm text-gray-700 border-b border-blackcurrant-600"><%= @current_user.username %></span>
                                         <%= link "Albums", to: Routes.admin_album_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "Photos", to: Routes.admin_photo_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
-                                        <%= link "Users", to: Routes.user_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
+                                        <%= link "Users", to: Routes.admin_user_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                     </div>
@@ -89,7 +89,7 @@
                     </div>
                     <div class="mt-3 px-2">
                         <%= link "Albums", to: Routes.admin_album_path(@conn, :index), class: "block px-3 py-2 rounded-md text-base font-medium text-blackcurrant-100 hover:text-blackcurrant-800 hover:bg-blackcurrant-100 focus:outline-none focus:text-blackcurrant-800 focus:bg-blackcurrant-100" %>
-                        <%= link "Users", to: Routes.user_path(@conn, :index), class: "block px-3 py-2 rounded-md text-base font-medium text-blackcurrant-100 hover:text-blackcurrant-800 hover:bg-blackcurrant-100 focus:outline-none focus:text-blackcurrant-800 focus:bg-blackcurrant-100" %>
+                        <%= link "Users", to: Routes.admin_user_path(@conn, :index), class: "block px-3 py-2 rounded-md text-base font-medium text-blackcurrant-100 hover:text-blackcurrant-800 hover:bg-blackcurrant-100 focus:outline-none focus:text-blackcurrant-800 focus:bg-blackcurrant-100" %>
                         <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-3 py-2 rounded-md text-base font-medium text-blackcurrant-100 hover:text-blackcurrant-800 hover:bg-blackcurrant-100 focus:outline-none focus:text-blackcurrant-800 focus:bg-blackcurrant-100" %>
                     </div>
                 </div>

@@ -5,7 +5,6 @@ defmodule PortfolioWeb.AlbumView do
   end
 
   def render("styles.html", assigns) do
-    IO.inspect(Routes.static_path(assigns[:conn], "/css/gallery.css"))
     ~E|<link rel="stylesheet" href="<%= Routes.static_path(assigns[:conn], "/css/gallery.css") %>"/>|
   end
 end

@@ -42,7 +42,7 @@ defmodule PortfolioWeb.Router do
   scope "/admin", PortfolioWeb do
     pipe_through [:browser, :protected]
 
-    resources "/users", UserController, only: [:index, :show]
+    resources "/users", Admin.UserController, only: [:index, :show], name: "admin_user"
     resources "/albums", Admin.AlbumController, name: "admin_album"
     resources "/photos", Admin.PhotoController, name: "admin_photo"
   end

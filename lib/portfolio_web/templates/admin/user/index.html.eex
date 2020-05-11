@@ -18,7 +18,7 @@
             <td><%= user.email %></td>
 
             <td>
-                <span><%= link "Show", to: Routes.user_path(@conn, :show, user) %></span>
+                <span><%= link "Show", to: Routes.admin_user_path(@conn, :show, user) %></span>
             </td>
         </tr>
         <% end %>

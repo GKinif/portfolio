@@ -1,4 +1,4 @@
-defmodule PortfolioWeb.UserControllerTest do
+defmodule PortfolioWeb.Admin.UserControllerTest do
   use PortfolioWeb.ConnCase
 
   alias Portfolio.Accounts
@@ -15,8 +15,8 @@ defmodule PortfolioWeb.UserControllerTest do
   end
 
   describe "authentication" do
-    test "prevent accessing user when user is not authenticated", %{conn: conn} do
-      conn = get(conn, Routes.user_path(conn, :index))
+    test "prevent accessing admin user when user is not authenticated", %{conn: conn} do
+      conn = get(conn, Routes.admin_user_path(conn, :index))
 
       assert redirected_to(conn) == Routes.page_path(conn, :index)
     end
@@ -30,7 +30,7 @@ defmodule PortfolioWeb.UserControllerTest do
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> get(Routes.user_path(conn, :index))
+        |> get(Routes.admin_user_path(conn, :index))
 
       assert html_response(conn, 200) =~ "Listing Users"
     end
@@ -39,7 +39,7 @@ defmodule PortfolioWeb.UserControllerTest do
   describe "new user" do
     @tag :skip
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.user_path(conn, :new))
+      conn = get(conn, Routes.admin_user_path(conn, :new))
       assert html_response(conn, 200) =~ "New User"
     end
   end
@@ -47,18 +47,18 @@ defmodule PortfolioWeb.UserControllerTest do
   describe "create user" do
     @tag :skip
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @create_attrs)
+      conn = post(conn, Routes.admin_user_path(conn, :create), user: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.user_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_user_path(conn, :show, id)
 
-      conn = get(conn, Routes.user_path(conn, :show, id))
+      conn = get(conn, Routes.admin_user_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show User"
     end
 
     @tag :skip
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.user_path(conn, :create), user: @invalid_attrs)
+      conn = post(conn, Routes.admin_user_path(conn, :create), user: @invalid_attrs)
       assert html_response(conn, 200) =~ "New User"
     end
   end
@@ -68,7 +68,7 @@ defmodule PortfolioWeb.UserControllerTest do
 
     @tag :skip
     test "renders form for editing chosen user", %{conn: conn, user: user} do
-      conn = get(conn, Routes.user_path(conn, :edit, user))
+      conn = get(conn, Routes.admin_user_path(conn, :edit, user))
       assert html_response(conn, 200) =~ "Edit User"
     end
   end
@@ -78,16 +78,16 @@ defmodule PortfolioWeb.UserControllerTest do
 
     @tag :skip
     test "redirects when data is valid", %{conn: conn, user: user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @update_attrs)
-      assert redirected_to(conn) == Routes.user_path(conn, :show, user)
+      conn = put(conn, Routes.admin_user_path(conn, :update, user), user: @update_attrs)
+      assert redirected_to(conn) == Routes.admin_user_path(conn, :show, user)
 
-      conn = get(conn, Routes.user_path(conn, :show, user))
+      conn = get(conn, Routes.admin_user_path(conn, :show, user))
       assert html_response(conn, 200) =~ @valid_email
     end
 
     @tag :skip
     test "renders errors when data is invalid", %{conn: conn, user: user} do
-      conn = put(conn, Routes.user_path(conn, :update, user), user: @invalid_attrs)
+      conn = put(conn, Routes.admin_user_path(conn, :update, user), user: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit User"
     end
   end
@@ -97,10 +97,10 @@ defmodule PortfolioWeb.UserControllerTest do
 
     @tag :skip
     test "deletes chosen user", %{conn: conn, user: user} do
-      conn = delete(conn, Routes.user_path(conn, :delete, user))
-      assert redirected_to(conn) == Routes.user_path(conn, :index)
+      conn = delete(conn, Routes.admin_user_path(conn, :delete, user))
+      assert redirected_to(conn) == Routes.admin_user_path(conn, :index)
       assert_error_sent 404, fn ->
-        get(conn, Routes.user_path(conn, :show, user))
+        get(conn, Routes.admin_user_path(conn, :show, user))
       end
     end
   end

@@ -22,5 +22,6 @@ defmodule Portfolio.Galleries.Photo do
     |> cast(attrs, [:description, :alt, :order, :featured, :album_id])
     |> cast_attachments(attrs, [:image])
     |> validate_required([:album_id])
+    |> foreign_key_constraint(:album_id)
   end
 end

@@ -15,7 +15,7 @@ defmodule PortfolioWeb.AlbumControllerTest do
 
     test "lists all albums", %{conn: conn} do
       conn = get(conn, Routes.album_path(conn, :index))
-      assert html_response(conn, 200) =~ "Listing Albums"
+      assert html_response(conn, 200) =~ "some name"
     end
   end
 

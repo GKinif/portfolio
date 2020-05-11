@@ -1,4 +1,4 @@
-defmodule PortfolioWeb.UserController do
+defmodule PortfolioWeb.Admin.UserController do
   use PortfolioWeb, :controller
 
   alias Portfolio.Accounts
@@ -19,7 +19,7 @@ defmodule PortfolioWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> redirect(to: Routes.admin_user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule PortfolioWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User updated successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> redirect(to: Routes.admin_user_path(conn, :show, user))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", user: user, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule PortfolioWeb.UserController do
 
     conn
     |> put_flash(:info, "User deleted successfully.")
-    |> redirect(to: Routes.user_path(conn, :index))
+    |> redirect(to: Routes.admin_user_path(conn, :index))
   end
 end

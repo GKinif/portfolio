@@ -34,7 +34,7 @@ defmodule Portfolio.Uploaders.AlbumCoverUploader do
   end
 
   # Override the storage directory:
-   def storage_dir(_version, {file, schema}) do
+   def storage_dir(_version, {_file, schema}) do
      "uploads/albums/#{schema.id}/cover"
    end
 
