@@ -1,6 +1,8 @@
 const plugin = require('tailwindcss/plugin');
 
 module.exports = {
+  // purge is configured in postcss.config.js
+  purge: false,
   theme: {
     flexGrow: {
       '0': 0,

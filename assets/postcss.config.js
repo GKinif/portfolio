@@ -1,5 +1,4 @@
 const purgecss = require('@fullhuman/postcss-purgecss')({
-
   // Specify the paths to all of the template files in your project
   content: [
     '../**/*.html.eex',
@@ -7,6 +6,9 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     '../**/views/**/*.ex',
     './js/**/*.js'
   ],
+
+  // Only purge app.css to prevent purging lightgallery
+  whitelistPatterns: [/^lg-/],
 
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
