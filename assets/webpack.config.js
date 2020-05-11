@@ -16,7 +16,8 @@ module.exports = (env, options) => {
       ]
     },
     entry: {
-      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
+      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js']),
+      'gallery': './js/gallery.js'
     },
     output: {
       filename: '[name].js',
@@ -34,6 +35,14 @@ module.exports = (env, options) => {
           }
         },
         {
+          test: /\.(woff(2)?|ttf|eot|svg|png|jpe?g|gif)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
+        },
+        {
           test: /\.[s]?css$/,
           use: [
             MiniCssExtractPlugin.loader,
@@ -43,11 +52,11 @@ module.exports = (env, options) => {
             },
             'sass-loader',
           ],
-        }
+        },
       ]
     },
     plugins: [
-      new MiniCssExtractPlugin({ filename: '../css/app.css' }),
+      new MiniCssExtractPlugin({ filename: '../css/[name].css' }),
       new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
     ]
   }

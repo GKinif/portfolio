@@ -70,7 +70,7 @@ defmodule Portfolio.Galleries do
       ** (Ecto.NoResultsError)
 
   """
-  def get_album!(id), do: Repo.get!(Album, id)
+  def get_album!(id), do: Repo.get!(Album, id) |> Repo.preload(:photos)
 
   @doc """
   Creates a album.

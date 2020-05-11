@@ -9,10 +9,18 @@
   <h1 class="flex justify-center text-6xl"><%= @album.name %></h1>
 
   <%= if @album.short_description && !@album.long_description do %>
-    <p><%= @album.short_description %></p>
+    <p class="my-4 text-lg"><%= @album.short_description %></p>
   <% end %>
 
   <%= if @album.long_description do %>
-  <p><%= @album.long_description %></p>
+    <p class="my-4"><%= @album.long_description %></p>
   <% end %>
+
+  <div id="lightgallery" class="flex flex-wrap">
+    <%= for photo <- @album.photos do %>
+    <a class="w-full md:w-4/12 p-1" href="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" data-sub-html="<p>Classic view from Rigwood Jetty on Coniston Water an old archive shot similar to an old post but a little later on.</p>">
+      <img  src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :thumb) %>" alt="<%= photo.alt %>" />
+    </a>
+    <% end %>
+  </div>
 </section>
