@@ -3,5 +3,5 @@
 
     <%= render "form.html", Map.merge(assigns, %{action: Routes.admin_photo_path(@conn, :create), albums: @albums}) %>
 
-    <span><%= link "Back", to: Routes.admin_photo_path(@conn, :index) %></span>
+    <span><%= link "Back", to: Routes.admin_photo_path(@conn, :index), class: "hover:underline hover:text-gullgray-900" %></span>
 </section>

@@ -1,6 +1,8 @@
 <section class="container mx-auto">
   <h1>Listing Photos</h1>
 
+  <span><%= link "New Photo", to: Routes.admin_photo_path(@conn, :new), class: "hover:underline hover:text-gullgray-900" %></span>
+
   <table class="table-auto w-full">
     <thead>
     <tr>
@@ -33,6 +35,4 @@
     <% end %>
     </tbody>
   </table>
-
-  <span><%= link "New Photo", to: Routes.admin_photo_path(@conn, :new) %></span>
 </section>

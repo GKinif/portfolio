@@ -3,5 +3,5 @@
 
     <%= render "form.html", Map.put(assigns, :action, Routes.admin_album_path(@conn, :update, @album)) %>
 
-    <span><%= link "Back", to: Routes.admin_album_path(@conn, :index) %></span>
+    <span><%= link "Back", to: Routes.admin_album_path(@conn, :index), class: "hover:underline hover:text-gullgray-900" %></span>
 </section>

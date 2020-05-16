@@ -1,6 +1,8 @@
 <section class="container mx-auto">
   <h1>Listing Albums</h1>
 
+  <span><%= link "New Album", to: Routes.admin_album_path(@conn, :new), class: "hover:underline hover:text-gullgray-900" %></span>
+
   <table class="table-auto w-full">
     <thead>
     <tr>
@@ -37,6 +39,4 @@
     <% end %>
     </tbody>
   </table>
-
-  <span><%= link "New Album", to: Routes.admin_album_path(@conn, :new) %></span>
 </section>
