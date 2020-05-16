@@ -4,6 +4,9 @@ module.exports = {
   // purge is configured in postcss.config.js
   purge: false,
   theme: {
+    maxWidth: {
+      '500px': '500px',
+    },
     flexGrow: {
       '0': 0,
       default: 1,

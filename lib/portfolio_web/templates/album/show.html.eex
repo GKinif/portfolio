@@ -1,5 +1,5 @@
-<img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
-<section class="flex flex-col px-6">
+<section class="container mx-auto flex flex-col px-6">
+  <img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
   <div class="flex flex-wrap items-center">
     <%= for tag <- ["food", "stuff", "other tag", "test", "temporary"] do %>
     <span class="border border-blackcurrant-200 rounded-full px-3 py-1 text-sm font-semibold m-1 hover:border-galliano-500 hover:bg-blackcurrant-500 hover:text-blackcurrant-100 focus:outline-none focus:text-blackcurrant-100"><%= tag %></span>
@@ -16,11 +16,13 @@
     <p class="my-4"><%= @album.long_description %></p>
   <% end %>
 
-  <div id="lightgallery" class="flex flex-wrap">
-    <%= for photo <- @album.photos do %>
-    <a class="w-full md:w-4/12 p-1" href="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" data-sub-html="<p><%= photo.description %></p>">
-      <img  src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :thumb) %>" alt="<%= photo.alt %>" />
-    </a>
-    <% end %>
+  <div class="flex justify-center">
+    <div id="lightgallery" class="flex flex-wrap gallery">
+      <%= for photo <- @album.photos do %>
+      <a class="w-full md:w-1/2 xl:w-1/3 p-1" href="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" data-sub-html="<p><%= photo.description %></p>">
+        <img class="object-cover w-full h-full" src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :thumb) %>" alt="<%= photo.alt %>" />
+      </a>
+      <% end %>
+    </div>
   </div>
 </section>
