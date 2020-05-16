@@ -7,7 +7,7 @@
     <title>Guillaume Kinif Photography</title>
 
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <%= render_existing @view_module, "styles.html", assigns %>
+    <%= render_existing @view_module, "styles." <> @view_template, assigns %>
   </head>
 
   <body>
@@ -21,6 +21,6 @@
 
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 
-    <%= render_existing @view_module, "scripts.html", assigns %>
+    <%= render_existing @view_module, "scripts." <> @view_template, assigns %>
   </body>
 </html>

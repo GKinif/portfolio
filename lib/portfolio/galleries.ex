@@ -163,6 +163,14 @@ defmodule Portfolio.Galleries do
     Repo.all(Photo)
   end
 
+  def list_featured_photos do
+    query =
+      from p in Photo,
+           where: p.featured == true,
+           select: p
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single photo.
 

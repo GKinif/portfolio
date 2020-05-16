@@ -1,6 +1,6 @@
 <img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
 <section class="container mx-auto">
-  <h1>Show Album</h1>
+  <h1>Show Album <%= @album.name %></h1>
 
   <div class="flex">
     <span><%= link "Edit", to: Routes.admin_album_path(@conn, :edit, @album), class: "hover:underline hover:text-gullgray-900" %></span>
@@ -8,12 +8,6 @@
   </div>
 
   <ul>
-
-    <li>
-      <strong>Name:</strong>
-      <%= @album.name %>
-    </li>
-
     <li>
       <strong>Short description:</strong>
       <%= @album.short_description %>

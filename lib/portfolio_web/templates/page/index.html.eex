@@ -1,4 +1,4 @@
-<section>
+<header>
   <div class="featured-albums">
   <%= for album <- @albums do %>
     <div class="featured-album">
@@ -11,4 +11,8 @@
     </div>
   <% end %>
   </div>
+</header>
+
+<section class="container mx-auto flex flex-col px-6">
+  <%= Phoenix.View.render(PortfolioWeb.GalleryView, "photo.html", photos: @featured_photos) %>
 </section>

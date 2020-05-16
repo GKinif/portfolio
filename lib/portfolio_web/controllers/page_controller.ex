@@ -9,6 +9,7 @@ defmodule PortfolioWeb.PageController do
       %{controller: "PageController", action: "index"}
     )
     albums = Galleries.list_featured_albums()
-    render(conn, "index.html", albums: albums)
+    featured_photos = Galleries.list_featured_photos()
+    render(conn, "index.html", albums: albums, featured_photos: featured_photos)
   end
 end
