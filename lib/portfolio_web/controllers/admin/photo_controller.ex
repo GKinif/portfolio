@@ -23,7 +23,8 @@ defmodule PortfolioWeb.Admin.PhotoController do
         |> redirect(to: Routes.admin_photo_path(conn, :show, photo))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        albums = Galleries.list_albums()
+        render(conn, "new.html", changeset: changeset, albums: albums)
     end
   end
 
