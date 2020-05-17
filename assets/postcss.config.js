@@ -8,7 +8,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
   ],
 
   // Only purge app.css to prevent purging lightgallery
-  whitelistPatterns: [/^lg-/],
+  whitelistPatterns: [/^lg-/, /^cropper-/],
 
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
