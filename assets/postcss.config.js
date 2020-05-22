@@ -12,23 +12,10 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     /^lg-/,
     // Whitelist cropper.js css
     /^cropper-/,
-    /^dashed-h/,
-    /^dashed-v/,
-    /^line-e/,
-    /^line-n/,
-    /^line-w/,
-    /^line-s/,
-    /^point-e/,
-    /^point-n/,
-    /^point-w/,
-    /^point-s/,
-    /^point-ne/,
-    /^point-nw/,
-    /^point-sw/,
-    /^point-se/,
     // Whitelist tippy css
-    /tippy-/,
+    /tippy/,
   ],
+  whitelistPatternsChildren: [/tippy/, /cropper/],
 
   // Include any special characters you're using in this regular expression
   defaultExtractor: content => content.match(/[\w-/:]+(?<!:)/g) || []
