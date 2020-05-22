@@ -24,7 +24,7 @@
             data-tippy-placement="right"
           />
           <div id="cover-tooltip-<%= photo.id %>" class="hidden">
-            <img src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" class="max-w-6xl" />
+            <img src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" class="max-h-48" />
           </div>
         <% end %>
       </td>
