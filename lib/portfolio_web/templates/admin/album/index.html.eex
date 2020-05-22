@@ -17,7 +17,19 @@
     <tbody>
     <%= for album <- @albums do %>
     <tr>
-      <td class="w-16 py-2"><img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :thumb) %>" class="h-8 w-8 rounded-full" /></td>
+      <td class="w-16 py-2">
+        <%= link to: Routes.admin_album_path(@conn, :show, album), class: "flex items-center justify-center" do %>
+          <img
+            src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :thumb) %>"
+            class="h-8 w-8 rounded-full"
+            data-tooltip-content="cover-tooltip-<%= album.id %>"
+            data-tippy-placement="right"
+          />
+          <div id="cover-tooltip-<%= album.id %>" class="hidden">
+            <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>" class="max-w-6xl" />
+          </div>
+        <% end %>
+      </td>
       <td class="border px-4 py-2"><%= album.name %></td>
       <td class="border px-4 py-2"><%= album.visible %></td>
       <td class="border px-4 py-2"><%= album.featured %></td>
