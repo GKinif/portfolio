@@ -7,9 +7,10 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     './js/**/*.js'
   ],
 
-  // Only purge app.css to prevent purging lightgallery
   whitelistPatterns: [
+    // Whitelist lightgallery css
     /^lg-/,
+    // Whitelist cropper.js css
     /^cropper-/,
     /^dashed-h/,
     /^dashed-v/,
@@ -25,7 +26,8 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     /^point-nw/,
     /^point-sw/,
     /^point-se/,
-
+    // Whitelist tippy css
+    /^tippy-/,
   ],
 
   // Include any special characters you're using in this regular expression

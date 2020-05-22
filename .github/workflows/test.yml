@@ -2,7 +2,9 @@ name: Test CI
 
 on:
   push:
-    branches: [ develop ]
+    branches:
+      - developer
+      - 'release/**'
   pull_request:
     branches: [ master ]
 
