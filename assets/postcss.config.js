@@ -27,7 +27,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     /^point-sw/,
     /^point-se/,
     // Whitelist tippy css
-    /^tippy-/,
+    /tippy-/,
   ],
 
   // Include any special characters you're using in this regular expression
