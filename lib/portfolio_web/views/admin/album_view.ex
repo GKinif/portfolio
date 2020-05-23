@@ -7,4 +7,11 @@ defmodule PortfolioWeb.Admin.AlbumView do
   def render("styles.index.html", assigns) do
     ~E|<link rel="stylesheet" href="<%= Routes.static_path(assigns[:conn], "/css/admin.css") %>"/>|
   end
+
+  def render("scripts.show.html", assigns) do
+    ~E|<script src="<%= Routes.static_path(assigns[:conn], "/js/admin.js") %>"></script>|
+  end
+  def render("styles.show.html", assigns) do
+    ~E|<link rel="stylesheet" href="<%= Routes.static_path(assigns[:conn], "/css/admin.css") %>"/>|
+  end
 end

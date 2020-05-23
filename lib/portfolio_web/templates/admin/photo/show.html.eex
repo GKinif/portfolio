@@ -2,8 +2,8 @@
   <h1>Show Photo</h1>
 
   <div class="flex">
-    <span><%= link "Edit", to: Routes.admin_photo_path(@conn, :edit, @photo), class: "hover:underline hover:text-gullgray-900" %></span>
-    <span><%= link "Back", to: Routes.admin_photo_path(@conn, :index), class: "ml-2 hover:underline hover:text-gullgray-900" %></span>
+    <span><%= link "Edit", to: Routes.admin_album_photo_path(@conn, :edit, @album, @photo), class: "hover:underline hover:text-gullgray-900" %></span>
+    <span><%= link "Back to Album", to: Routes.admin_album_path(@conn, :show, @album), class: "ml-2 hover:underline hover:text-gullgray-900" %></span>
   </div>
 
   <ul>
