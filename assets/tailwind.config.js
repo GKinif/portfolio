@@ -7,6 +7,9 @@ module.exports = {
     maxWidth: {
       '500px': '500px',
     },
+    maxHeight: {
+      '48': '12rem',
+    },
     flexGrow: {
       '0': 0,
       default: 1,

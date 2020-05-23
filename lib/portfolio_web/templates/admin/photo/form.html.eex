@@ -6,8 +6,7 @@
   <% end %>
 
   <div class="mb-6">
-    <%= label f, :album_id, class: "field-label" %>
-    <%= select f, :album_id, Enum.map(@albums, &{&1.name, &1.id}), class: "field-input" %>
+    <%= hidden_input f, :album_id, value: @album_id %>
     <%= error_tag f, :album_id, class: "text-red-500 text-xs italic" %>
   </div>
 

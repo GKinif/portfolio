@@ -37,7 +37,6 @@
                                     <div class="py-1 rounded-md bg-white shadow-xs" role="menu" aria-orientation="vertical">
                                         <span class="block px-4 py-2 text-sm text-gray-700 border-b border-blackcurrant-600"><%= @current_user.username %></span>
                                         <%= link "Albums", to: Routes.admin_album_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
-                                        <%= link "Photos", to: Routes.admin_photo_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "Users", to: Routes.admin_user_path(@conn, :index), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home), class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>
                                         <%= link "Sign out", to: Routes.session_path(@conn, :delete), method: :delete, class: "block px-4 py-2 text-sm text-blackcurrant-600 hover:bg-blackcurrant-600 hover:text-blackcurrant-100" %>

@@ -40,6 +40,54 @@
 
   </ul>
 
-  <span><%= link "Edit", to: Routes.admin_album_path(@conn, :edit, @album) %></span>
-  <span><%= link "Back", to: Routes.admin_album_path(@conn, :index) %></span>
+  <hr class="my-4" />
+
+  <h2>Album photos</h2>
+
+  <span><%= link "New Photo", to: Routes.admin_album_photo_path(@conn, :new, @album), class: "hover:underline hover:text-gullgray-900" %></span>
+
+  <table class="table-auto w-full">
+    <thead>
+    <tr>
+      <th></th>
+      <th class="px-4 py-2">Featured</th>
+      <th class="px-4 py-2">Order</th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <%= for photo <- @album.photos do %>
+    <tr>
+      <td class="w-16 py-2">
+        <%= link to: Routes.admin_album_photo_path(@conn, :show, @album, photo), class: "flex items-center justify-center" do %>
+        <img
+                src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :thumb) %>"
+                class="h-8 w-8 rounded-full"
+                data-tooltip-content="cover-tooltip-<%= photo.id %>"
+                data-tippy-placement="right"
+        />
+        <div id="cover-tooltip-<%= photo.id %>" class="hidden">
+          <img src="<%= Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original) %>" class="max-h-48" />
+        </div>
+        <% end %>
+      </td>
+      <td class="border px-4 py-2"><%= photo.featured %></td>
+      <td class="border px-4 py-2"><%= photo.order %></td>
+      <td class="border px-4 py-2">
+        <div class="flex items-center">
+          <%= link to: Routes.admin_album_photo_path(@conn, :show, @album, photo), class: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded p-2 flex items-center justify-center" do %>
+          <%= render_icon("view", "fill-current inline-block h-4 w-4") %>
+          <% end %>
+          <%= link to: Routes.admin_album_photo_path(@conn, :edit, @album, photo), class: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded p-2 flex items-center justify-center" do %>
+          <%= render_icon("edit", "fill-current inline-block h-4 w-4") %>
+          <% end %>
+          <%= link to: Routes.admin_album_photo_path(@conn, :delete, @album, photo), method: :delete, data: [confirm: "Are you sure?"], class: "bg-transparent hover:bg-red-500 text-red-700 hover:text-white border border-red-500 hover:border-transparent rounded p-2 flex items-center justify-center" do %>
+          <%= render_icon("trash", "fill-current inline-block h-4 w-4") %>
+          <% end %>
+        </div>
+      </td>
+    </tr>
+    <% end %>
+    </tbody>
+  </table>
 </section>

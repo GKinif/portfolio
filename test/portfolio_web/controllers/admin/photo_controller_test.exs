@@ -13,14 +13,14 @@ defmodule PortfolioWeb.Admin.PhotoControllerTest do
   @invalid_attrs %{alt: nil, description: nil, featured: nil, order: nil}
 
   def fixture(:album) do
-    {:ok, user} = Galleries.create_album(@album_attrs)
-    user
+    {:ok, album} = Galleries.create_album(@album_attrs)
+    album
   end
 
   def fixture(:photo) do
     album = fixture(:album)
     {:ok, photo} = Galleries.create_photo(Map.put(@create_attrs, :album_id, album.id))
-    photo
+    {album, photo}
   end
 
   def fixture(:user) do
@@ -29,70 +29,57 @@ defmodule PortfolioWeb.Admin.PhotoControllerTest do
   end
 
   describe "authentication" do
+    setup [:create_photo]
+
     @tag :skip
-    test "prevent accessing admin photo when user is not authenticated", %{conn: conn} do
-      conn = get(conn, Routes.admin_photo_path(conn, :index))
+    test "prevent accessing admin photo when user is not authenticated", %{conn: conn, album: album, photo: photo} do
+      conn = get(conn, Routes.admin_album_photo_path(conn, :show, album, photo))
 
       assert redirected_to(conn) == Routes.page_path(conn, :index)
     end
   end
 
-  describe "index" do
-    setup [:create_user]
-
-    @tag :skip
-    test "lists all photos", %{conn: conn, user: user} do
-      conn =
-        conn
-        |> Plug.Test.init_test_session(user_id: user.id)
-        |> Plug.Conn.assign(:current_user, user)
-        |> get(Routes.admin_photo_path(conn, :index))
-
-      assert html_response(conn, 200) =~ "Listing Photos"
-    end
-  end
-
   describe "new photo" do
-    setup [:create_user]
+    setup [:create_user, :create_album]
 
     @tag :skip
-    test "renders form", %{conn: conn, user: user} do
+    test "renders form", %{conn: conn, user: user, album: album} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
         |> Plug.Conn.assign(:albums, [])
-        |> get(Routes.admin_photo_path(conn, :new))
+        |> get(Routes.admin_album_photo_path(conn, :new, album))
 
       assert html_response(conn, 200) =~ "New Photo"
     end
   end
 
   describe "create photo" do
-    setup [:create_user]
+    setup [:create_user, :create_album]
 
     @tag :skip
-    test "redirects to show when data is valid", %{conn: conn, user: user} do
+    test "redirects to show when data is valid", %{conn: conn, user: user, album: album} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> post(Routes.admin_photo_path(conn, :create), photo: @create_attrs)
+        |> post(Routes.admin_album_photo_path(conn, :create, album), photo: @create_attrs)
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.admin_photo_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_album_photo_path(conn, :show, album, id)
 
-      conn = get(conn, Routes.admin_photo_path(conn, :show, id))
+      conn = get(conn, Routes.admin_album_photo_path(conn, :show, album, id))
       assert html_response(conn, 200) =~ "Show Photo"
     end
 
     @tag :skip
-    test "renders errors when data is invalid", %{conn: conn, user: user} do
+    test "renders errors when data is invalid", %{conn: conn, user: user, album: album} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> post(Routes.admin_photo_path(conn, :create), photo: @invalid_attrs)
+        |> post(Routes.admin_album_photo_path(conn, :create, album), photo: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "New Photo"
     end
@@ -102,12 +89,12 @@ defmodule PortfolioWeb.Admin.PhotoControllerTest do
     setup [:create_photo, :create_user]
 
     @tag :skip
-    test "renders form for editing chosen photo", %{conn: conn, photo: photo, user: user} do
+    test "renders form for editing chosen photo", %{conn: conn, album: album, photo: photo, user: user} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> get(Routes.admin_photo_path(conn, :edit, photo))
+        |> get(Routes.admin_album_photo_path(conn, :edit, album, photo))
 
       assert html_response(conn, 200) =~ "Edit Photo"
     end
@@ -117,26 +104,26 @@ defmodule PortfolioWeb.Admin.PhotoControllerTest do
     setup [:create_photo, :create_user]
 
     @tag :skip
-    test "redirects when data is valid", %{conn: conn, photo: photo, user: user} do
+    test "redirects when data is valid", %{conn: conn, album: album, photo: photo, user: user} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> put(Routes.admin_photo_path(conn, :update, photo), photo: @update_attrs)
+        |> put(Routes.admin_album_photo_path(conn, :update, album, photo), photo: @update_attrs)
 
-      assert redirected_to(conn) == Routes.admin_photo_path(conn, :show, photo)
+      assert redirected_to(conn) == Routes.admin_album_photo_path(conn, :show, album, photo)
 
-      conn = get(conn, Routes.admin_photo_path(conn, :show, photo))
+      conn = get(conn, Routes.admin_album_photo_path(conn, :show, album, photo))
       assert html_response(conn, 200) =~ "some updated alt"
     end
 
     @tag :skip
-    test "renders errors when data is invalid", %{conn: conn, photo: photo, user: user} do
+    test "renders errors when data is invalid", %{conn: conn, album: album, photo: photo, user: user} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> put(Routes.admin_photo_path(conn, :update, photo), photo: @invalid_attrs)
+        |> put(Routes.admin_album_photo_path(conn, :update, album, photo), photo: @invalid_attrs)
 
       assert html_response(conn, 200) =~ "Edit Photo"
     end
@@ -146,23 +133,28 @@ defmodule PortfolioWeb.Admin.PhotoControllerTest do
     setup [:create_photo, :create_user]
 
     @tag :skip
-    test "deletes chosen photo", %{conn: conn, photo: photo, user: user} do
+    test "deletes chosen photo", %{conn: conn, album: album, photo: photo, user: user} do
       conn =
         conn
         |> Plug.Test.init_test_session(user_id: user.id)
         |> Plug.Conn.assign(:current_user, user)
-        |> delete(Routes.admin_photo_path(conn, :delete, photo))
+        |> delete(Routes.admin_album_photo_path(conn, :delete, album, photo))
 
-      assert redirected_to(conn) == Routes.admin_photo_path(conn, :index)
+      assert redirected_to(conn) == Routes.admin_album_photo_path(conn, :index, album)
       assert_error_sent 404, fn ->
-        get(conn, Routes.admin_photo_path(conn, :show, photo))
+        get(conn, Routes.admin_album_photo_path(conn, :show, album, photo))
       end
     end
   end
 
+  defp create_album(_) do
+    album = fixture(:album)
+    %{album: album}
+  end
+
   defp create_photo(_) do
-    photo = fixture(:photo)
-    %{photo: photo}
+    {album, photo} = fixture(:photo)
+    %{album: album, photo: photo}
   end
 
   defp create_user(_) do
