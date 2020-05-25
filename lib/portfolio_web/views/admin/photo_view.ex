@@ -14,4 +14,23 @@ defmodule PortfolioWeb.Admin.PhotoView do
   def render("styles.edit.html", assigns) do
     ~E|<link rel="stylesheet" href="<%= Routes.static_path(assigns[:conn], "/css/editor.css") %>"/>|
   end
+
+  def render("file-upload-success.json", %{photo: photo}) do
+    %{upload: render_one(photo, PortfolioWeb.Admin.PhotoView, "photo.json")}
+  end
+  def render("file-upload-error.json", _assigns) do
+    %{error: ["test"]}
+  end
+
+  def render("photo.json", %{photo: photo}) do
+    %{
+      album_id: photo.album_id,
+      alt: photo.alt,
+      description: photo.description,
+      featured: photo.featured,
+      id: photo.id,
+      image: Portfolio.Uploaders.PhotoUploader.url({photo.image, photo}, :original),
+      order: photo.order,
+    }
+  end
 end

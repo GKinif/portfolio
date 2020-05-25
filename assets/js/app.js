@@ -1,6 +1,6 @@
-import '../css/app.scss';
+import "../css/app.scss";
 
 // import socket from "./socket"
-import 'phoenix_html';
+import "phoenix_html";
 
-import 'alpinejs';
+import "alpinejs";

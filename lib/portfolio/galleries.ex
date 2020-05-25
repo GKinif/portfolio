@@ -245,10 +245,15 @@ defmodule Portfolio.Galleries do
 
   """
   def delete_photo(%Photo{} = photo) do
-    with :ok <- delete_photo_from_disk(photo) do
-      Repo.delete(photo)
-    else
-      error -> error
+    case photo.image do
+      nil ->
+        Repo.delete(photo)
+      _ ->
+        with :ok <- delete_photo_from_disk(photo) do
+          Repo.delete(photo)
+        else
+          error -> error
+        end
     end
   end
 
