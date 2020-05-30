@@ -19,6 +19,7 @@ module.exports = (env, options) => {
       app: glob.sync("./vendor/**/*.js").concat(["./js/app.js"]),
       gallery: "./js/gallery.js",
       editor: "./js/editor.js",
+      multiEditor: "./js/multiEditor.js",
       admin: "./js/admin.js",
     },
     output: {

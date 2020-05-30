@@ -14,6 +14,11 @@ defmodule Portfolio.Galleries.Album do
     field :order, :integer
     field :password, :string
 
+    # Virtual field used to crop thumbnail
+    field :thumb_x, :integer, virtual: true
+    field :thumb_y, :integer, virtual: true
+    field :thumb_size, :integer, virtual: true
+
     has_many :photos, Photo
 
     timestamps()
@@ -22,7 +27,7 @@ defmodule Portfolio.Galleries.Album do
   @doc false
   def changeset(album, attrs) do
     album
-    |> cast(attrs, [:name, :short_description, :long_description, :visible, :password, :order, :featured])
+    |> cast(attrs, [:name, :short_description, :long_description, :visible, :password, :order, :featured, :thumb_x, :thumb_y, :thumb_size])
     |> cast_attachments(attrs, [:cover])
     |> validate_required([:name])
   end

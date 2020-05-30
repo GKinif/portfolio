@@ -23,7 +23,10 @@ defmodule Portfolio.Uploaders.AlbumCoverUploader do
   end
 
   # Define a thumbnail transformation:
-  def transform(:thumb, _) do
+  def transform(:thumb, {_image, %{thumb_size: thumb_size, thumb_x: thumb_x, thumb_y: thumb_y}}) when thumb_x != nil do
+    {:convert, "-strip -crop #{thumb_size}x#{thumb_size}+#{thumb_x}+#{thumb_y} -thumbnail 500x500^ -format jpg -limit area 10MB -limit disk 100MB", :jpg}
+  end
+  def transform(:thumb, {_image, schema}) do
     {:convert, "-strip -thumbnail 500x500^ -gravity center -extent 500x500 -format jpg -limit area 10MB -limit disk 100MB", :jpg}
   end
 

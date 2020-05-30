@@ -6,94 +6,60 @@
 }
 
 .album-cards {
-  @apply flex flex-wrap mt-8 justify-between;
+  @apply mt-8;
+  display: flex;
+  flex-direction: column;
 
-  .img img,
+/*  .card-image img,
   &:focus .img img {
     filter: grayscale(0%);
     transition: 0.6s;
   }
 
-  &:hover .img img,
-  &:focus .img img {
+  &:hover .card-image img,
+  &:focus .card-image img {
     filter: grayscale(60%);
   }
 
-  .album-card:hover .img img {
+  .album-card:hover .card-image img {
     filter: grayscale(0%);
     transition: 0.6s;
-  }
+  }*/
 }
 
 .album-card {
-  @apply bg-blackcurrant-500 text-blackcurrant-100 rounded-lg;
-  border: 1px solid;
+  @apply text-blackcurrant-500;
   display: flex;
-  flex-direction: column;
   position: relative;
-  height: 100%;
-}
-
-.album-card .text {
-  padding: 1rem;
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.album-card p {
-  max-width: 60ch;
-}
-
-.album-card .img {
-  height: 20rem;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 1rem));
-}
-
-.album-card .img img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
-.album-card a {
-  text-decoration: none;
-  @apply mb-2 text-4xl text-blackcurrant-100;
+.album-card:not(:first-child) {
+  @apply border-t border-blackcurrant-500;
 }
 
-.album-card a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+@media (min-width: 640px) {
+  .cut-left {
+    clip-path: polygon(calc(0% + 1rem) 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .cut-right {
+    clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+  }
+
+  .album-card .card-image {
+    flex: 0 0 50%;
+    width: 50%;
+    height: 50vh;
+  }
 }
 
-.album-card a:focus {
-  outline: none;
-  text-decoration: underline;
-  @apply text-blackcurrant-500;
-}
-
-.album-card:focus-within,
-.album-card:hover {
-  box-shadow: 0 0 0 0.25rem;
-  @apply bg-blackcurrant-100 text-blackcurrant-500;
-}
-
-.album-card:focus-within a,
-.album-card:hover a {
-  @apply text-blackcurrant-500;
-}
-
-.album-card:focus-within a:focus {
-  text-decoration: none;
-  @apply text-blackcurrant-500;
-}
-
-.album-card .text > * + * {
-  margin-top: 0.75rem;
+@media (min-width: 768px) {
+  .album-card .card-image {
+    flex: 0 0 450px;
+    width: 100%;
+    height: 450px;
+  }
 }
 
 // FEATURED ALBUMS

@@ -1,7 +1,7 @@
 <section class="container mx-auto flex flex-col px-6">
   <img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
   <div class="flex flex-wrap items-center">
-    <%= for tag <- ["food", "stuff", "other tag", "test", "temporary"] do %>
+    <%= for tag <- [] do %>
     <span class="border border-blackcurrant-200 rounded-full px-3 py-1 text-sm font-semibold m-1 hover:border-galliano-500 hover:bg-blackcurrant-500 hover:text-blackcurrant-100 focus:outline-none focus:text-blackcurrant-100"><%= tag %></span>
     <% end %>
   </div>

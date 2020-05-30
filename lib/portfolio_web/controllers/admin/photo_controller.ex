@@ -26,16 +26,13 @@ defmodule PortfolioWeb.Admin.PhotoController do
   end
 
   def api_upload(conn, params) do
-    IO.inspect(params, label: "upload params")
     album = Galleries.get_album!(params["album_id"])
 
     case Galleries.create_photo(Map.put(params, "album_id", album.id)) do
       {:ok, photo} ->
-        IO.inspect(photo, label: "upload success")
         render(conn, "file-upload-success.json", photo: photo)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        IO.inspect(changeset, label: "upload error")
         render(conn, "file-upload-failed.json", changeset: changeset)
     end
   end

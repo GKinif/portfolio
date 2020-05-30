@@ -13,8 +13,25 @@
 
   <div class="mb-6">
     <%= label f, :cover, class: "field-label" %>
-    <%= file_input f, :cover, class: "field-input" %>
+    <%= file_input f, :cover, class: "field-input", id: "file-input" %>
     <%= error_tag f, :cover, class: "text-red-500 text-xs italic" %>
+  </div>
+
+  <%= hidden_input f, :thumb_x, class: "field-input", id: "thumb-x" %>
+  <%= hidden_input f, :thumb_y, class: "field-input", id: "thumb-y" %>
+  <%= hidden_input f, :thumb_size, class: "field-input", id: "thumb-size" %>
+
+  <div class="flex text-blackcurrant-500">
+    <div>X:<span id="x-display" class="ml-2"></span></div>
+    <div class="ml-2">Y:<span id="y-display" class="ml-2"></span></div>
+    <div class="ml-2">Size:<span id="size-display" class="ml-2"></span></div>
+  </div>
+
+  <div class="mg:w-full lg:w-1/2 p-2">
+    <div><%= error_tag f, :thumb_x, class: "text-red-500 text-xs italic" %></div>
+    <div><%= error_tag f, :thumb_y, class: "text-red-500 text-xs italic" %></div>
+    <div><%= error_tag f, :thumb_size, class: "text-red-500 text-xs italic" %></div>
+    <canvas id="canvas" class="border border-blackcurrant-500" style="max-width: 500px;"></canvas>
   </div>
 
   <div class="mb-6">

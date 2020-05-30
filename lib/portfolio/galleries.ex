@@ -91,7 +91,7 @@ defmodule Portfolio.Galleries do
     |> Album.changeset(attrs_without_cover)
     |> Repo.insert() do
       if Map.has_key?(attrs, "cover") do
-        attrs_cover = Map.take(attrs, ["cover"])
+        attrs_cover = Map.take(attrs, ["cover", "thumb_size", "thumb_x", "thumb_y"])
         update_album(album, attrs_cover)
       else
         {:ok, album}
@@ -112,6 +112,7 @@ defmodule Portfolio.Galleries do
 
   """
   def update_album(%Album{} = album, attrs) do
+    IO.inspect(attrs, label: "UPDATE")
     album
     |> Album.changeset(attrs)
     |> Repo.update()
