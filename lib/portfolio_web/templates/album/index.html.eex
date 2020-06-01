@@ -1,5 +1,5 @@
-<section class="container mx-auto">
-  <h1 class="my-4 text-center">Albums</h1>
+<section class="container mx-auto pt-8 md:pt-12">
+  <h1 class="text-center">Albums</h1>
 
   <ul class="album-cards">
     <%= for {album, index} <- Enum.with_index(@albums) do %>

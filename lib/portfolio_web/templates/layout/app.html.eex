@@ -13,7 +13,7 @@
   <body>
     <%= render "_nav.html", %{conn: @conn, current_user: @current_user} %>
 
-    <main class="w-full pb-8 pt-8 md:pt-16">
+    <main class="w-full pb-8">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
