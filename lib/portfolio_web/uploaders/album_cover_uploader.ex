@@ -6,7 +6,7 @@ defmodule Portfolio.Uploaders.AlbumCoverUploader do
 
   @extension_whitelist ~w(.jpg .jpeg .gif .png)
 
-  @versions [:original, :thumb]
+  @versions [:original, :thumb, :small, :medium, :large]
 
   # To add a thumbnail version:
   # @versions [:original, :thumb]
@@ -28,6 +28,18 @@ defmodule Portfolio.Uploaders.AlbumCoverUploader do
   end
   def transform(:thumb, {_image, schema}) do
     {:convert, "-strip -thumbnail 500x500^ -gravity center -extent 500x500 -format jpg -limit area 10MB -limit disk 100MB", :jpg}
+  end
+
+  def transform(:small, {_image, schema}) do
+    {:convert, "-strip -resize 750x750> -format jpg -limit area 10MB -limit disk 100MB", :jpg}
+  end
+
+  def transform(:medium, {_image, schema}) do
+    {:convert, "-strip -resize 1000x1000> -format jpg -limit area 10MB -limit disk 100MB", :jpg}
+  end
+
+  def transform(:large, {_image, schema}) do
+    {:convert, "-strip -resize 1600x1600> -format jpg -limit area 10MB -limit disk 100MB", :jpg}
   end
 
   # Override the persisted filenames:

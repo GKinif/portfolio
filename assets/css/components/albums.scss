@@ -34,10 +34,6 @@
   width: 100%;
 }
 
-.album-card:not(:first-child) {
-  @apply border-t border-blackcurrant-500;
-}
-
 @media (min-width: 640px) {
   .cut-left {
     clip-path: polygon(calc(0% + 1rem) 0, 100% 0, 100% 100%, 0 100%);
@@ -45,6 +41,10 @@
 
   .cut-right {
     clip-path: polygon(0 0, 100% 0, calc(100% - 1rem) 100%, 0 100%);
+  }
+
+  .album-card:not(:first-child) {
+    @apply border-t border-blackcurrant-500;
   }
 
   .album-card .card-image {
@@ -65,8 +65,8 @@
 // FEATURED ALBUMS
 .featured-albums {
   @apply bg-blackcurrant-500;
-  height: 50vh;
   display: flex;
+  flex-direction: column;
   margin-bottom: 2rem;
   transition: 0.6s;
 
@@ -76,6 +76,13 @@
 
   .featured-album:hover img {
     filter: grayscale(0%);
+  }
+}
+
+@media (min-width: 768px) {
+  .featured-albums {
+    flex-direction: row;
+    height: 50vh;
   }
 }
 
