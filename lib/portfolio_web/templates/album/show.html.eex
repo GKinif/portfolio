@@ -1,20 +1,31 @@
+<div class="album-header overflow-hidden absolute -z-10 inset-x-0 top-0 opacity-10">
+  <img
+    class="album-cover"
+    srcset="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :small) %> 750w,
+          <%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :medium) %> 1000w,
+          <%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :large) %> 1600w"
+    sizes="100vw"
+    src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>"
+  />
+</div>
 <section class="container mx-auto flex flex-col px-6">
-  <img class="album-cover" src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :original) %>" />
   <div class="flex flex-wrap items-center">
     <%= for tag <- [] do %>
     <span class="border border-blackcurrant-200 rounded-full px-3 py-1 text-sm font-semibold m-1 hover:border-galliano-500 hover:bg-blackcurrant-500 hover:text-blackcurrant-100 focus:outline-none focus:text-blackcurrant-100"><%= tag %></span>
     <% end %>
   </div>
 
-  <h1 class="flex justify-center text-6xl"><%= @album.name %></h1>
+  <div class="pb-8">
+    <h1 class="flex justify-center"><%= @album.name %></h1>
 
-  <%= if @album.short_description && !@album.long_description do %>
+    <%= if @album.short_description && !@album.long_description do %>
     <p class="my-4 text-lg"><%= @album.short_description %></p>
-  <% end %>
+    <% end %>
 
-  <%= if @album.long_description do %>
+    <%= if @album.long_description do %>
     <p class="my-4"><%= @album.long_description %></p>
-  <% end %>
+    <% end %>
+  </div>
 
   <%= Phoenix.View.render(PortfolioWeb.GalleryView, "photo.html", photos: @album.photos) %>
 </section>
