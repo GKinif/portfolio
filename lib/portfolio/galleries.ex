@@ -72,6 +72,8 @@ defmodule Portfolio.Galleries do
   """
   def get_album!(id), do: Repo.get!(Album, id) |> Repo.preload(:photos)
 
+  def get_album_by_slug!(slug), do: Repo.get_by!(Album, slug: slug) |> Repo.preload(:photos)
+
   @doc """
   Creates a album.
 
@@ -112,7 +114,6 @@ defmodule Portfolio.Galleries do
 
   """
   def update_album(%Album{} = album, attrs) do
-    IO.inspect(attrs, label: "UPDATE")
     album
     |> Album.changeset(attrs)
     |> Repo.update()

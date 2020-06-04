@@ -9,6 +9,11 @@
 
   <ul>
     <li>
+      <strong>Slug:</strong>
+      <%= @album.slug %>
+    </li>
+
+    <li>
       <strong>Short description:</strong>
       <%= @album.short_description %>
     </li>

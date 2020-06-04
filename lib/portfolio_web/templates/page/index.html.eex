@@ -13,7 +13,7 @@
           alt="<%= album.name %>" />
       </div>
       <div class="album-footer">
-        <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
+        <%= link album.name, to: Routes.album_path(@conn, :show, album.slug), id: "album-#{album.id}" %>
       </div>
     </div>
   <% end %>

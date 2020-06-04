@@ -1,6 +1,6 @@
-<div class="album-header overflow-hidden absolute -z-10 inset-x-0 top-0 opacity-10">
+<div class="album-header overflow-hidden absolute -z-10 inset-x-0 top-0">
   <img
-    class="album-cover"
+    class="album-cover opacity-10"
     srcset="<%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :small) %> 750w,
           <%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :medium) %> 1000w,
           <%= Portfolio.Uploaders.AlbumCoverUploader.url({@album.cover, @album}, :large) %> 1600w"

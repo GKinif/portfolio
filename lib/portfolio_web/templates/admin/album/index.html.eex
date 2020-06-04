@@ -8,9 +8,10 @@
     <tr>
       <th></th>
       <th class="px-4 py-2">Name</th>
-      <th class="px-4 py-2">Visible</th>
-      <th class="px-4 py-2">Featured</th>
-      <th class="px-4 py-2">Order</th>
+      <th class="px-4 py-2 hidden md:table-cell">Slug</th>
+      <th class="px-4 py-2 hidden md:table-cell">Visible</th>
+      <th class="px-4 py-2 hidden md:table-cell">Featured</th>
+      <th class="px-4 py-2 hidden md:table-cell">Order</th>
       <th></th>
     </tr>
     </thead>
@@ -31,9 +32,10 @@
         <% end %>
       </td>
       <td class="border px-4 py-2"><%= album.name %></td>
-      <td class="border px-4 py-2"><%= album.visible %></td>
-      <td class="border px-4 py-2"><%= album.featured %></td>
-      <td class="border px-4 py-2"><%= album.order %></td>
+      <td class="border px-4 py-2 hidden md:table-cell"><%= album.slug %></td>
+      <td class="border px-4 py-2 hidden md:table-cell"><%= album.visible %></td>
+      <td class="border px-4 py-2 hidden md:table-cell"><%= album.featured %></td>
+      <td class="border px-4 py-2 hidden md:table-cell"><%= album.order %></td>
       <td class="border px-4 py-2">
         <div class="flex items-center">
           <%= link to: Routes.admin_album_path(@conn, :show, album), class: "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white border border-blue-500 hover:border-transparent rounded p-2 flex items-center justify-center" do %>
