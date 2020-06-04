@@ -4,7 +4,7 @@ defmodule Portfolio.MixProject do
   def project do
     [
       app: :portfolio,
-      version: "0.2.0",
+      version: "0.3.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -48,7 +48,8 @@ defmodule Portfolio.MixProject do
       {:ueberauth, "~> 0.6"},
       {:ueberauth_github, "~> 0.7"},
       {:waffle, "~> 1.0.1"},
-      {:waffle_ecto, "~> 0.0.8"}
+      {:waffle_ecto, "~> 0.0.8"},
+      {:slugify, "~> 1.3"}
     ]
   end
 

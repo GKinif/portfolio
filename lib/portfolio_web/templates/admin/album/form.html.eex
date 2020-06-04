@@ -7,7 +7,7 @@
 
   <div class="mb-6">
     <%= label f, :name, class: "field-label" %>
-    <%= text_input f, :name, class: "field-input #{if f.errors[:name], do: "error"}" %>
+    <%= text_input f, :name, class: "field-input #{if f.errors[:name], do: "error"}", id: "name-field" %>
     <%= error_tag f, :name, class: "text-red-500 text-xs italic" %>
   </div>
 
