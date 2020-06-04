@@ -3,10 +3,17 @@
   <%= for album <- @albums do %>
     <div class="featured-album">
       <div class="album-image">
-        <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>" />
+        <img
+          srcset="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :small) %> 750w,
+          <%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :medium) %> 1000w,
+          <%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :large) %> 1600w"
+          sizes="(min-width: 768px) <%= Float.round(100 / (length(@albums) - 1), 1) %>vw,
+                  100vw"
+          src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :large) %>"
+          alt="<%= album.name %>" />
       </div>
       <div class="album-footer">
-        <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
+        <%= link album.name, to: Routes.album_path(@conn, :show, album.slug), id: "album-#{album.id}" %>
       </div>
     </div>
   <% end %>

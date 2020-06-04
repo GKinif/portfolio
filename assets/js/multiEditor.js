@@ -2,11 +2,14 @@ import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.min.css";
 import '../css/adminPhoto.scss';
 
+import "./photoDropper";
+
 let fileInput = document.getElementById("file-input");
 
 if (fileInput) {
   fileInput.addEventListener("change", function (ev) {
     if (ev.target.files) {
+      console.log("files: ", ev.target.files);
       const file = ev.target.files[0];
       const reader = new FileReader();
 
@@ -53,3 +56,17 @@ if (fileInput) {
     }
   });
 }
+
+/*Dropzone.options.photoDropzone = {
+  url: 'fake-url',
+  autoQueue: false,
+  autoProcessQueue: false,
+  addRemoveLinks: true,
+  hiddenInputContainer: '#file-input'
+};*/
+
+import App from './components/PhotoUploader.svelte';
+
+new App({
+  target: document.getElementById('svelte-container'),
+});

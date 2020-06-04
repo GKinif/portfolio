@@ -14,7 +14,7 @@ defmodule PortfolioWeb.Admin.PhotoController do
   def create(conn, %{"photo" => photo_params, "admin_album_id" => album_id}) do
     album = Galleries.get_album!(album_id)
 
-    case Galleries.create_photo(photo_params) do
+    case Galleries.create_photo(Map.put(photo_params, "album_id", album.id)) do
       {:ok, photo} ->
         conn
         |> put_flash(:info, "Photo created successfully.")
@@ -22,6 +22,18 @@ defmodule PortfolioWeb.Admin.PhotoController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, album_id: album.id)
+    end
+  end
+
+  def api_upload(conn, params) do
+    album = Galleries.get_album!(params["album_id"])
+
+    case Galleries.create_photo(Map.put(params, "album_id", album.id)) do
+      {:ok, photo} ->
+        render(conn, "file-upload-success.json", photo: photo)
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        render(conn, "file-upload-failed.json", changeset: changeset)
     end
   end
 
@@ -43,7 +55,7 @@ defmodule PortfolioWeb.Admin.PhotoController do
     album = Galleries.get_album!(album_id)
     photo = Galleries.get_photo!(id)
 
-    case Galleries.update_photo(photo, photo_params) do
+    case Galleries.update_photo(photo, Map.put(photo_params, "album_id", album.id)) do
       {:ok, photo} ->
         conn
         |> put_flash(:info, "Photo updated successfully.")
@@ -61,6 +73,6 @@ defmodule PortfolioWeb.Admin.PhotoController do
 
     conn
     |> put_flash(:info, "Photo deleted successfully.")
-    |> redirect(to: Routes.admin_album_photo_path(conn, :index, album))
+    |> redirect(to: Routes.admin_album_path(conn, :show, album))
   end
 end

@@ -13,10 +13,16 @@ defmodule PortfolioWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :fetch_session
+    plug PortfolioWeb.Plugs.AssignAuthenticatedUser
   end
 
   pipeline :protected do
     plug PortfolioWeb.Plugs.RequestAuthenticated
+  end
+
+  pipeline :protected_api do
+    plug PortfolioWeb.Plugs.RequestAuthenticatedApi
   end
 
   scope "/", PortfolioWeb do
@@ -49,7 +55,9 @@ defmodule PortfolioWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PortfolioWeb do
-  #   pipe_through :api
-  # end
+   scope "/api", PortfolioWeb do
+     pipe_through [:api, :protected_api]
+
+     post "/photoupload", Admin.PhotoController, :api_upload
+   end
 end
