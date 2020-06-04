@@ -72,6 +72,8 @@ defmodule Portfolio.Galleries do
   """
   def get_album!(id), do: Repo.get!(Album, id) |> Repo.preload(:photos)
 
+  def get_album_by_slug!(slug), do: Repo.get_by!(Album, slug: slug) |> Repo.preload(:photos)
+
   @doc """
   Creates a album.
 
@@ -91,7 +93,7 @@ defmodule Portfolio.Galleries do
     |> Album.changeset(attrs_without_cover)
     |> Repo.insert() do
       if Map.has_key?(attrs, "cover") do
-        attrs_cover = Map.take(attrs, ["cover"])
+        attrs_cover = Map.take(attrs, ["cover", "thumb_size", "thumb_x", "thumb_y"])
         update_album(album, attrs_cover)
       else
         {:ok, album}
@@ -245,10 +247,15 @@ defmodule Portfolio.Galleries do
 
   """
   def delete_photo(%Photo{} = photo) do
-    with :ok <- delete_photo_from_disk(photo) do
-      Repo.delete(photo)
-    else
-      error -> error
+    case photo.image do
+      nil ->
+        Repo.delete(photo)
+      _ ->
+        with :ok <- delete_photo_from_disk(photo) do
+          Repo.delete(photo)
+        else
+          error -> error
+        end
     end
   end
 

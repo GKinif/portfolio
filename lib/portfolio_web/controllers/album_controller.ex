@@ -8,7 +8,7 @@ defmodule PortfolioWeb.AlbumController do
   end
 
   def show(conn, %{"id" => id}) do
-    album = Galleries.get_album!(id)
+    album = Galleries.get_album_by_slug!(id)
     render(conn, "show.html", album: album)
   end
 end

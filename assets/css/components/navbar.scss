@@ -1,7 +1,9 @@
 .nav-link {
   @apply ml-4 px-3 py-2 rounded-md text-lg font-medium text-blackcurrant-100 outline-none;
 
-  &.active, &:hover, &.focus {
+  &.active,
+  &:hover,
+  &.focus {
     @apply text-galliano-400;
   }
 }

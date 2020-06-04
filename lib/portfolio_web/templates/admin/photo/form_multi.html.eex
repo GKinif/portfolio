@@ -1,0 +1,2 @@
+<input type="hidden" id="album-id" value="<%= @album_id %>">
+<div id="svelte-container"></div>

@@ -1,19 +1,19 @@
-<section class="container mx-auto">
-  <h1 class="text-4xl my-4">Albums</h1>
+<section class="container mx-auto pt-8 md:pt-12">
+  <h1 class="text-center">Albums</h1>
 
   <ul class="album-cards">
-    <%= for album <- @albums do %>
-    <li class="md:w-1/2 p-2">
-      <div class="album-card rounded-lg bg-blackcurrant-500">
-        <div class="img">
-          <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :original) %>", class="rounded-t-md">
-        </div>
-        <div class="text">
-          <h2>
-            <%= link album.name, to: Routes.album_path(@conn, :show, album), id: "album-#{album.id}" %>
-          </h2>
-          <p><%= album.short_description %></p>
-        </div>
+    <%= for {album, index} <- Enum.with_index(@albums) do %>
+    <li class="album-card flex-col sm:flex-row">
+      <div class="card-image cut-left border-blackcurrant-500 <%= flex_order(index) %>">
+        <img src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :thumb) %>" class="w-full h-full object-cover">
+      </div>
+
+      <div class="p-8 flex flex-col items-center flex-grow">
+        <h2>
+          <%= album.name %>
+        </h2>
+        <p class="flex-grow"><%= album.short_description %></p>
+        <%= link "Explore", to: Routes.album_path(@conn, :show, album.slug), class: "my-2 text-blackcurrant-500 border border-blackcurrant-500 hover:text-blackcurrant-100 hover:bg-blackcurrant-500 py-2 px-4 rounded-full" %>
       </div>
     </li>
     <% end %>
