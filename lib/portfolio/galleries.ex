@@ -114,7 +114,6 @@ defmodule Portfolio.Galleries do
 
   """
   def update_album(%Album{} = album, attrs) do
-    IO.inspect(attrs, label: "UPDATE")
     album
     |> Album.changeset(attrs)
     |> Repo.update()
