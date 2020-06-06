@@ -26,6 +26,7 @@
   import TrashIcon from "./icons/Trash.svelte";
   import LoaderSvg from "./icons/Loader.svelte";
   import CheckMarkSvg from "./icons/CheckMark.svelte";
+  import { uploadPhoto } from "../services/gallery";
 
   let overed = false;
   /**
@@ -35,36 +36,7 @@
   let photoList = [];
   let uploadPromise;
 
-  $: console.log("promise: ", uploadPromise);
-
-  const uploadPhoto = (photo) => {
-    const albumId = document.getElementById("album-id").value;
-    console.log("uploadPhoto: ", photo);
-    const url = "http://localhost:4000/api/photoupload";
-    const formData = new FormData();
-
-    formData.append("image", photo.file);
-    formData.append("description", photo.description);
-    formData.append("featured", photo.featured);
-    formData.append("thumb_x", photo.thumbX);
-    formData.append("thumb_y", photo.thumbY);
-    formData.append("thumb_size", photo.thumbSize);
-    formData.append("album_id", albumId);
-
-    return fetch(url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((e) => {
-        console.log("error: ", e);
-      });
-  };
-
   const handleUpload = () => {
-    console.log("handleUpload: ", photoList);
-
     uploadPromise = Promise.all(photoList.map(uploadPhoto));
   };
 
@@ -83,7 +55,6 @@
   };
 
   const handleDrop = (event) => {
-    console.log("drop");
     overed = false;
 
     const files = event.dataTransfer.files;
