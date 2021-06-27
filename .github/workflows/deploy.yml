@@ -7,7 +7,7 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
 
     services:
       # Label used to access the service container
@@ -41,8 +41,8 @@ jobs:
     - name: Setup elixir
       uses: actions/setup-elixir@v1
       with:
-        elixir-version: 1.9.4
-        otp-version: 22.2
+        elixir-version: 1.11.4
+        otp-version: 23.3.1
 
     - name: Install Phoenix Dependencies
       run: mix deps.get

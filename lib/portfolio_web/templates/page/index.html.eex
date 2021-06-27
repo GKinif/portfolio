@@ -7,7 +7,7 @@
           srcset="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :small) %> 750w,
           <%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :medium) %> 1000w,
           <%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :large) %> 1600w"
-          sizes="(min-width: 768px) <%= Float.round(100 / (length(@albums) - 1), 1) %>vw,
+          sizes="(min-width: 768px) <%= Float.round(100 / (max(2, length(@albums)) - 1), 1) %>vw,
                   100vw"
           src="<%= Portfolio.Uploaders.AlbumCoverUploader.url({album.cover, album}, :large) %>"
           alt="<%= album.name %>" />
@@ -21,5 +21,10 @@
 </header>
 
 <section class="container mx-auto flex flex-col px-6">
-  <%= Phoenix.View.render(PortfolioWeb.GalleryView, "photo.html", photos: @featured_photos) %>
+  <%= for album <- @albums do %>
+  <article>
+    <h2 class="flex align-center justify-center"><%= album.name %></h2>
+    <%= Phoenix.View.render(PortfolioWeb.GalleryView, "photo.html", photos: album.photos) %>
+  </article>
+  <% end %>
 </section>

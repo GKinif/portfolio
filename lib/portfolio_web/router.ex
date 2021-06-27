@@ -43,6 +43,7 @@ defmodule PortfolioWeb.Router do
 
     get("/:provider", SessionController, :request)
     get("/:provider/callback", SessionController, :callback)
+    post "/:provider/callback", AuthController, :callback
   end
 
   scope "/admin", PortfolioWeb do
