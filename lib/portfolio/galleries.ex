@@ -49,10 +49,16 @@ defmodule Portfolio.Galleries do
 
   """
   def list_featured_albums do
+    photos_query =
+      from p in Photo,
+        where: p.featured == true,
+        order_by: [asc: :order, desc: :updated_at]
+
     query =
       from a in Album,
          where: a.visible == true and a.featured == true,
-         select: a
+         order_by: [asc: :order, desc: :updated_at, asc: :name],
+         preload: [photos: ^photos_query]
     Repo.all(query)
   end
 
